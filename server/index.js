@@ -192,6 +192,23 @@ app.get('/api/rsi-speedbreaker', (req, res) => {
   res.json({ tf, buckets, counts: { oversold: buckets.oversold.length, rejection: buckets.rejection.length, overbought: buckets.overbought.length } });
 });
 
+app.get('/api/breakouts', (req, res) => {
+  const tf = (req.query.tf || 'm15').trim();
+  const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
+  const breaking = [];
+  const consolidating = [];
+  for (const base of bases) {
+    const row = db.prepare(`SELECT ts, price, activeBreakout, consolidation FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
+    if (!row) continue;
+    const activeBreakout = row.activeBreakout ? JSON.parse(row.activeBreakout) : {};
+    const consolidation = row.consolidation ? JSON.parse(row.consolidation) : {};
+    const direction = activeBreakout[tf];
+    if (direction) breaking.push({ base, price: row.price, direction, ts: row.ts });
+    if (consolidation[tf]?.consolidated) consolidating.push({ base, price: row.price, ts: row.ts, ...consolidation[tf] });
+  }
+  res.json({ tf, breaking, consolidating });
+});
+
 app.get('/api/momentum-scan', (req, res) => {
   res.json({ coins: momentumScanner.scan() });
 });
