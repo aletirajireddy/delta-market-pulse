@@ -10,6 +10,7 @@ const smartAlertsRouter = require('./routes/smartAlerts');
 const { buildCandle } = require('./services/indicators/emaCandleWall');
 const breadthScanner = require('./services/breadthScanner');
 const { buildLevelCatalog } = require('./services/levelCatalog');
+const ghostSettings = require('./services/watchlist/ghostSettings');
 
 const app = express();
 app.use(express.json());
@@ -203,6 +204,16 @@ app.get('/api/market-breadth', (req, res) => {
 });
 
 app.use('/api/smart-alerts', smartAlertsRouter);
+
+app.get('/api/ghosts/watchdog-settings', (req, res) => {
+  const s = ghostSettings.getSettings();
+  res.json({ settleHours: s.settleMs / 3600000, graceHours: s.graceMs / 3600000, autoApprove: s.autoApprove });
+});
+
+app.post('/api/ghosts/watchdog-settings', (req, res) => {
+  const s = ghostSettings.updateSettings(req.body || {});
+  res.json({ settleHours: s.settleMs / 3600000, graceHours: s.graceMs / 3600000, autoApprove: s.autoApprove });
+});
 
 app.get('/api/whitelist', (req, res) => {
   res.json({ majors: thresholds.permanentMajors, whitelist: whitelist.list() });

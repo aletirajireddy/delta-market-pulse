@@ -1,6 +1,6 @@
 const db = require('../../db/database');
-const { ghost } = require('../../config/thresholds');
 const whitelist = require('./whitelist');
+const ghostSettings = require('./ghostSettings');
 
 const getLifecycle = db.prepare('SELECT * FROM coin_lifecycle WHERE base = ?');
 const update = db.prepare(`
@@ -19,6 +19,7 @@ const update = db.prepare(`
 function advance(base, passesFilter, movedMeaningfully, now) {
   if (whitelist.isBypassed(base)) return; // majors + whitelist never ghost
 
+  const { settleMs, graceMs, autoApprove } = ghostSettings.getSettings();
   const existing = getLifecycle.get(base);
   if (!existing || (existing.status !== 'active' && existing.status !== 'ghosted')) return;
 
@@ -36,7 +37,7 @@ function advance(base, passesFilter, movedMeaningfully, now) {
 
   if (existing.status === 'active') {
     const quietFor = now - existing.last_active_at;
-    if (quietFor >= ghost.settleMs) {
+    if (quietFor >= settleMs) {
       update.run('ghosted', existing.last_active_at, now, null, base);
     }
     // else: still within settle window, stays active untouched
@@ -45,8 +46,16 @@ function advance(base, passesFilter, movedMeaningfully, now) {
 
   if (existing.status === 'ghosted') {
     const graceFor = now - existing.ghosted_at;
-    if (graceFor >= ghost.graceMs) {
-      update.run('idle', existing.last_active_at, existing.ghosted_at, now, base); // pruned
+    if (graceFor >= graceMs) {
+      if (autoApprove) {
+        // Auto mode: actually removed. No memory carried forward — next
+        // appearance re-earns everything from scratch.
+        update.run('idle', existing.last_active_at, existing.ghosted_at, now, base);
+      } else {
+        // Manual mode: recycled instead of removed. Clock resets, stays on
+        // the watchlist — manual mode never auto-removes.
+        update.run('active', now, null, null, base);
+      }
     }
     // else: still within grace window, stays ghosted (visible, not yet removed)
   }

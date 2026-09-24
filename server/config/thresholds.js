@@ -20,13 +20,23 @@ module.exports = {
   permanentMajors: ['BTC', 'ETH'],
 
   // Ghost/prune lifecycle for graduated (non-major, non-whitelisted) coins.
+  // Matches the old project's Watchdog Confidence Clock defaults exactly
+  // (settle 12h + ghost/grace 36h = 48h total from a coin's own clock start).
   ghost: {
     // How long a graduated coin can go without genuine price movement
     // before it's queued for removal review.
-    settleMs: 60 * 60 * 1000, // 1h
-    // Grace window once queued, before it's actually pruned.
-    graceMs: 3 * 60 * 60 * 1000, // 3h
+    settleMs: 12 * 60 * 60 * 1000, // 12h
+    // Grace window once queued, before it's actually pruned (or recycled —
+    // see autoApprove below).
+    graceMs: 36 * 60 * 60 * 1000, // 36h
   },
+  // true (auto): a ghosted coin that never showed real activity by the end
+  //   of graceMs is actually removed from the watchlist — no memory carried
+  //   forward, re-earns everything from scratch if it reappears.
+  // false (manual): same expiry, but the coin is recycled instead — clock
+  //   resets, it stays on the watchlist rather than being removed. Manual
+  //   mode never auto-removes, matching the old project's behavior.
+  ghostAutoApprove: true,
 
   // Mega-spot / EMA200 clustering threshold, ported from the Pine indicators.
   megaClusterThresholdPct: 0.25,

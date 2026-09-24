@@ -111,6 +111,11 @@ CREATE TABLE IF NOT EXISTS atr_baseline (
   PRIMARY KEY (base, tf)
 );
 
+CREATE TABLE IF NOT EXISTS system_settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS breakout_events (
   base TEXT NOT NULL,
   tf TEXT NOT NULL,
