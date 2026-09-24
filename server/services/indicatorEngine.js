@@ -36,6 +36,7 @@ async function computeFullSnapshot(binanceSymbol) {
   const atrPct = pick('atrPct');
   const atr14 = pick('atr14');
   const rvol = pick('rvol');
+  const adx = pick('adx');
 
   const cascade = checkCascade(ema200, ['h4', 'h1', 'm15']);
   const counterCascade = checkCascade(ema200, ['m5', 'm1']);
@@ -62,7 +63,7 @@ async function computeFullSnapshot(binanceSymbol) {
   const session = await getSessionMetrics(binanceSymbol);
 
   return {
-    ema200, rsi14, atrPct, atr14, rvol, cascade, counterCascade, megaSpots,
+    ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots,
     price: tfResults.m1.indicators?.close ?? tfResults.m5.indicators?.close ?? null,
     smartLevels: { daily: dailyLevels, hourly: hourlyLevels, fib },
     sessionChangePct: session.changePct,

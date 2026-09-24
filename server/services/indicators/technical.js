@@ -1,4 +1,4 @@
-const { EMA, RSI, ATR } = require('technicalindicators');
+const { EMA, RSI, ATR, ADX } = require('technicalindicators');
 
 // candles: array of {open, high, low, close, volume, time}, oldest -> newest.
 // Computes the standard per-TF indicator set locally, from raw OHLCV only —
@@ -16,12 +16,14 @@ function computeIndicators(candles, { rvolLookback = 20 } = {}) {
     : [];
   const rsi14Series = RSI.calculate({ period: 14, values: closes });
   const atr14Series = ATR.calculate({ period: 14, high: highs, low: lows, close: closes });
+  const adxSeries = ADX.calculate({ period: 14, high: highs, low: lows, close: closes });
 
   const lastClose = closes[closes.length - 1];
   const ema200 = ema200Series.length ? ema200Series[ema200Series.length - 1] : null;
   const rsi14 = rsi14Series.length ? rsi14Series[rsi14Series.length - 1] : null;
   const atr14 = atr14Series.length ? atr14Series[atr14Series.length - 1] : null;
   const atrPct = atr14 && lastClose ? (atr14 / lastClose) * 100 : null;
+  const lastAdx = adxSeries.length ? adxSeries[adxSeries.length - 1] : null;
 
   const window = volumes.slice(-rvolLookback);
   const avgVol = window.length ? window.reduce((a, b) => a + b, 0) / window.length : null;
@@ -36,6 +38,13 @@ function computeIndicators(candles, { rvolLookback = 20 } = {}) {
     atr14, // raw absolute ATR (price units), needed for noise-filtered counter-trend checks
     atrPct,
     rvol,
+    // ADX: trend STRENGTH (0-100), direction-agnostic — complements cascade,
+    // which gives direction/structure but not conviction. +DI/-DI show which
+    // side currently dominates, same info cascade already implies but as a
+    // continuous number instead of a 3-state classification.
+    adx: lastAdx ? lastAdx.adx : null,
+    plusDI: lastAdx ? lastAdx.pdi : null,
+    minusDI: lastAdx ? lastAdx.mdi : null,
   };
 }
 

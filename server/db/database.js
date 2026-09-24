@@ -124,5 +124,6 @@ function safeAddColumn(table, columnDef, columnName) {
 safeAddColumn('coin_indicator_snapshot', 'price REAL', 'price');
 safeAddColumn('coin_indicator_snapshot', 'atr14 TEXT', 'atr14');
 safeAddColumn('coin_indicator_snapshot', 'counterCascade TEXT', 'counterCascade');
+safeAddColumn('coin_indicator_snapshot', 'adx TEXT', 'adx');
 
 module.exports = db;
