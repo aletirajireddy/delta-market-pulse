@@ -9,6 +9,7 @@ const momentumScanner = require('./services/momentumScanner');
 const smartAlertsRouter = require('./routes/smartAlerts');
 const { buildCandle } = require('./services/indicators/emaCandleWall');
 const breadthScanner = require('./services/breadthScanner');
+const { buildLevelCatalog } = require('./services/levelCatalog');
 
 const app = express();
 app.use(express.json());
@@ -133,6 +134,61 @@ app.get('/api/ema-candle-wall', (req, res) => {
   const order = { bull: 0, bear: 1, neutral: 2 };
   coins.sort((a, b) => (order[a.cascade] ?? 3) - (order[b.cascade] ?? 3));
   res.json({ coins, count: coins.length });
+});
+
+app.get('/api/speed-breakers', (req, res) => {
+  const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
+  const coins = [];
+  for (const base of bases) {
+    const row = db.prepare(`SELECT * FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
+    if (!row) continue;
+    const price = row.price;
+    const ema200 = JSON.parse(row.ema200);
+    const smartLevels = JSON.parse(row.smartLevels);
+    const megaSpots = JSON.parse(row.megaSpots);
+    const { levels, nextUp, nextDown } = buildLevelCatalog(price, ema200, smartLevels, megaSpots);
+
+    const tickerRow = db.prepare(`SELECT * FROM coin_ticker_snapshot WHERE base = ? AND source = 'binance' ORDER BY ts DESC LIMIT 1`).get(base);
+
+    coins.push({
+      base,
+      price,
+      momPct: row.sessionChangePct,
+      volumeUsd: tickerRow?.volume_usd_24h ?? null,
+      dayChangePct: tickerRow?.change_pct_24h ?? null,
+      nextUp,
+      nextDown,
+      levels,
+      ts: row.ts,
+    });
+  }
+  res.json({ coins });
+});
+
+app.get('/api/rsi-speedbreaker', (req, res) => {
+  const tf = (req.query.tf || 'm15').trim();
+  const oversold = parseFloat(req.query.oversold ?? 30);
+  const overbought = parseFloat(req.query.overbought ?? 70);
+  const rejectionLow = parseFloat(req.query.rejection_low ?? 48);
+  const rejectionHigh = parseFloat(req.query.rejection_high ?? 52);
+
+  const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
+  const buckets = { oversold: [], rejection: [], overbought: [] };
+  for (const base of bases) {
+    const row = db.prepare(`SELECT ts, rsi14, price, megaSpots FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
+    if (!row) continue;
+    const rsi14 = JSON.parse(row.rsi14);
+    const rsi = rsi14[tf];
+    if (rsi == null) continue;
+    const megaSpots = JSON.parse(row.megaSpots);
+    const entry = { base, price: row.price, rsi, ts: row.ts, megaSpotCount: megaSpots.length };
+    if (rsi < oversold) buckets.oversold.push(entry);
+    else if (rsi > overbought) buckets.overbought.push(entry);
+    else if (rsi >= rejectionLow && rsi <= rejectionHigh) buckets.rejection.push(entry);
+  }
+  buckets.oversold.sort((a, b) => a.rsi - b.rsi);
+  buckets.overbought.sort((a, b) => b.rsi - a.rsi);
+  res.json({ tf, buckets, counts: { oversold: buckets.oversold.length, rejection: buckets.rejection.length, overbought: buckets.overbought.length } });
 });
 
 app.get('/api/momentum-scan', (req, res) => {

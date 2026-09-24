@@ -70,6 +70,10 @@ async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
     d1: priorDaily ? fibLevels(priorDaily.high, priorDaily.low).fib618 : null,
     w1: priorWeekly ? fibLevels(priorWeekly.high, priorWeekly.low).fib618 : null,
   };
+  const htf = {
+    daily: priorDaily ? { open: priorDaily.open, high: priorDaily.high, low: priorDaily.low, close: priorDaily.close } : null,
+    weekly: priorWeekly ? { open: priorWeekly.open, high: priorWeekly.high, low: priorWeekly.low, close: priorWeekly.close } : null,
+  };
 
   const session = await getSessionMetrics(binanceSymbol);
 
@@ -77,7 +81,7 @@ async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
     ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots,
     consolidation, activeBreakout,
     price: tfResults.m1.indicators?.close ?? tfResults.m5.indicators?.close ?? null,
-    smartLevels: { daily: dailyLevels, hourly: hourlyLevels, fib },
+    smartLevels: { daily: dailyLevels, hourly: hourlyLevels, fib, htf },
     sessionChangePct: session.changePct,
     sessionVolumeUsd: session.volumeUsd,
   };
