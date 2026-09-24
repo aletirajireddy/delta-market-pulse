@@ -5,8 +5,11 @@ const poller = require('./poller');
 const thresholds = require('./config/thresholds');
 const whitelist = require('./services/watchlist/whitelist');
 const rsiGridWall = require('./services/indicators/rsiGridWall');
+const momentumScanner = require('./services/momentumScanner');
+const smartAlertsRouter = require('./routes/smartAlerts');
 
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 4000;
 
 app.get('/health', (req, res) => res.json({ ok: true, ts: Date.now() }));
@@ -81,6 +84,34 @@ app.get('/api/rsi-grid-wall', (req, res) => {
 
   res.json({ coins: rsiGridWall.sortCoins(coins), config });
 });
+
+app.get('/api/distance-tracker', (req, res) => {
+  const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
+  const coins = [];
+  for (const base of bases) {
+    const row = db.prepare(`SELECT ts, ema200 FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
+    const priceRow = db.prepare(`SELECT price FROM coin_ticker_snapshot WHERE base = ? AND source = 'binance' ORDER BY ts DESC LIMIT 1`).get(base);
+    if (!row || !priceRow) continue;
+    const ema200 = JSON.parse(row.ema200);
+    const price = priceRow.price;
+    const dist = {};
+    for (const tf of Object.keys(ema200)) {
+      dist[tf] = ema200[tf] != null ? ((price - ema200[tf]) / ema200[tf]) * 100 : null;
+    }
+    const nearestTf = Object.entries(dist)
+      .filter(([, v]) => v != null)
+      .sort((a, b) => Math.abs(a[1]) - Math.abs(b[1]))[0];
+    coins.push({ base, ts: row.ts, price, ema200, dist, nearestTf: nearestTf ? nearestTf[0] : null, nearestDist: nearestTf ? nearestTf[1] : null });
+  }
+  coins.sort((a, b) => Math.abs(a.nearestDist ?? 999) - Math.abs(b.nearestDist ?? 999));
+  res.json({ coins });
+});
+
+app.get('/api/momentum-scan', (req, res) => {
+  res.json({ coins: momentumScanner.scan() });
+});
+
+app.use('/api/smart-alerts', smartAlertsRouter);
 
 app.get('/api/whitelist', (req, res) => {
   res.json({ majors: thresholds.permanentMajors, whitelist: whitelist.list() });

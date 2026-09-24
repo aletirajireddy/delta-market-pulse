@@ -59,6 +59,40 @@ CREATE TABLE IF NOT EXISTS coin_whitelist (
   base TEXT PRIMARY KEY,
   added_at INTEGER NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS smart_alerts (
+  id TEXT PRIMARY KEY,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  enabled INTEGER NOT NULL DEFAULT 1,
+  base TEXT NOT NULL,
+  timeframe TEXT NOT NULL,       -- m5 | m15 | m30 | h1 | h4
+  triggers_json TEXT NOT NULL,   -- ['approach','touch','cross']
+  params_json TEXT NOT NULL,     -- {approach_atr, touch_atr, recurring, cooldown_min, expiry_hours, note}
+  state TEXT NOT NULL DEFAULT 'active', -- active | qualified | expired | disabled
+  expires_at INTEGER,
+  last_evaluated_at INTEGER,
+  last_price REAL,
+  last_ema REAL,
+  last_atr REAL,
+  last_side TEXT,                -- above | below | at
+  qualified_count INTEGER NOT NULL DEFAULT 0,
+  last_qualified_at INTEGER,
+  acknowledged_at INTEGER,
+  deleted_at INTEGER
+);
+CREATE INDEX IF NOT EXISTS idx_alerts_base ON smart_alerts(base) WHERE deleted_at IS NULL;
+
+CREATE TABLE IF NOT EXISTS smart_alert_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  alert_id TEXT NOT NULL,
+  ts INTEGER NOT NULL,
+  event_type TEXT NOT NULL, -- created | approach | touch | cross | expired | enabled | disabled
+  price REAL, ema REAL, atr REAL,
+  distance_pct REAL, distance_atr REAL,
+  message TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_alert_events_alert ON smart_alert_events(alert_id, id DESC);
 `);
 
 module.exports = db;

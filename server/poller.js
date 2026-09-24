@@ -7,6 +7,7 @@ const graduationGate = require('./services/watchlist/graduationGate');
 const ghostPrune = require('./services/watchlist/ghostPrune');
 const { checkOiSpike } = require('./services/oiSpike');
 const { computeFullSnapshot } = require('./services/indicatorEngine');
+const smartAlertsEvaluator = require('./services/smartAlerts/evaluator');
 
 const insertSnapshot = db.prepare(`
   INSERT OR REPLACE INTO coin_ticker_snapshot
@@ -117,6 +118,8 @@ async function runIndicatorPass(now) {
   if (watched.length) {
     console.log(`[indicator pass] computed for ${watched.length} watched coin(s): ${watched.join(', ')}`);
   }
+
+  smartAlertsEvaluator.evaluateAll();
 }
 
 function start(intervalMs) {
