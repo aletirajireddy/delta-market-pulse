@@ -16,8 +16,13 @@ async function get24hrTickers() {
 }
 
 // Klines: [openTime, open, high, low, close, volume, closeTime, ...]
-async function getKlines(symbol, interval, limit = 300) {
-  return get('/fapi/v1/klines', { symbol, interval, limit });
+// endTime (ms epoch), when given, fetches the `limit` candles ending at that
+// moment — used for historical/backtest-style validation against a past
+// timestamp instead of "right now".
+async function getKlines(symbol, interval, limit = 300, endTime) {
+  const params = { symbol, interval, limit };
+  if (endTime) params.endTime = endTime;
+  return get('/fapi/v1/klines', params);
 }
 
 async function getOpenInterest(symbol) {

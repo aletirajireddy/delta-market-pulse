@@ -1,5 +1,6 @@
 const db = require('../../db/database');
-const { graduationWindowMs, permanentMajors } = require('../../config/thresholds');
+const { graduationWindowMs } = require('../../config/thresholds');
+const whitelist = require('./whitelist');
 
 const getLifecycle = db.prepare('SELECT * FROM coin_lifecycle WHERE base = ?');
 const upsert = db.prepare(`
@@ -16,7 +17,7 @@ const upsert = db.prepare(`
 // passesFilter: bool result of the 3-threshold filter this cycle.
 // Returns the updated lifecycle row.
 function advance(base, passesFilter, now) {
-  const isPermanent = permanentMajors.includes(base);
+  const isPermanent = whitelist.isBypassed(base);
   const existing = getLifecycle.get(base);
 
   if (isPermanent) {

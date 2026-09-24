@@ -38,6 +38,27 @@ CREATE TABLE IF NOT EXISTS oi_baseline (
   base TEXT PRIMARY KEY,
   samples TEXT NOT NULL   -- JSON array of recent OI USD readings
 );
+
+CREATE TABLE IF NOT EXISTS coin_indicator_snapshot (
+  base TEXT NOT NULL,
+  ts INTEGER NOT NULL,
+  ema200 TEXT NOT NULL,      -- JSON {m5,m15,h1,h4}
+  rsi14 TEXT NOT NULL,       -- JSON {m5,m15,h1,h4}
+  atrPct TEXT NOT NULL,      -- JSON {m5,m15,h1,h4}
+  rvol TEXT NOT NULL,        -- JSON {m5,m15,h1,h4}
+  cascade TEXT NOT NULL,     -- 'bull' | 'bear' | 'neutral'
+  megaSpots TEXT NOT NULL,   -- JSON array of {price,count,tfs}
+  smartLevels TEXT NOT NULL, -- JSON {daily:{...}, hourly:{...}, fib:{...}}
+  sessionChangePct REAL,
+  sessionVolumeUsd REAL,
+  PRIMARY KEY (base, ts)
+);
+CREATE INDEX IF NOT EXISTS idx_indicator_base_ts ON coin_indicator_snapshot(base, ts DESC);
+
+CREATE TABLE IF NOT EXISTS coin_whitelist (
+  base TEXT PRIMARY KEY,
+  added_at INTEGER NOT NULL
+);
 `);
 
 module.exports = db;

@@ -6,6 +6,7 @@ const { evaluateFilter } = require('./services/watchlist/filterEngine');
 const graduationGate = require('./services/watchlist/graduationGate');
 const ghostPrune = require('./services/watchlist/ghostPrune');
 const { checkOiSpike } = require('./services/oiSpike');
+const { computeFullSnapshot } = require('./services/indicatorEngine');
 
 const insertSnapshot = db.prepare(`
   INSERT OR REPLACE INTO coin_ticker_snapshot
@@ -13,6 +14,14 @@ const insertSnapshot = db.prepare(`
   VALUES (@base, @ts, @price, @change_pct_24h, @volume_usd_24h, @oi_usd, @funding_rate, @source)
 `);
 const insertPulse = db.prepare('INSERT OR REPLACE INTO watchlist_pulse (ts, qualifying_count, active_count) VALUES (?, ?, ?)');
+const insertIndicatorSnapshot = db.prepare(`
+  INSERT OR REPLACE INTO coin_indicator_snapshot
+    (base, ts, ema200, rsi14, atrPct, rvol, cascade, megaSpots, smartLevels, sessionChangePct, sessionVolumeUsd)
+  VALUES (@base, @ts, @ema200, @rsi14, @atrPct, @rvol, @cascade, @megaSpots, @smartLevels, @sessionChangePct, @sessionVolumeUsd)
+`);
+const getWatchedCoins = db.prepare(`
+  SELECT base FROM coin_lifecycle WHERE status IN ('qualifying', 'active', 'ghosted')
+`);
 const getPrevPrice = db.prepare(`
   SELECT price FROM coin_ticker_snapshot
   WHERE base = ? AND source = 'binance' AND ts < ?
@@ -71,6 +80,43 @@ async function pollOnce() {
   const { qualifying, active } = graduationGate.counts();
   insertPulse.run(now, qualifying, active);
   console.log(`[poll] ${new Date(now).toISOString()} evaluated=${evaluated} qualifying=${qualifying} active=${active}`);
+
+  await runIndicatorPass(now);
+}
+
+// Full validated indicator set (EMA200/RSI/ATR/RVOL, cascade, mega-spot,
+// smart levels, session metrics) only for watched coins — not all 185 —
+// to stay well under exchange rate limits. Sequential, not parallel: the
+// watched set is small and this avoids bursting the API.
+async function runIndicatorPass(now) {
+  const watched = getWatchedCoins.all().map((r) => r.base);
+  const universeByBase = new Map(universe.coins.map((c) => [c.base, c]));
+
+  for (const base of watched) {
+    const coin = universeByBase.get(base);
+    if (!coin) continue;
+    try {
+      const snap = await computeFullSnapshot(coin.binanceSymbol);
+      insertIndicatorSnapshot.run({
+        base,
+        ts: now,
+        ema200: JSON.stringify(snap.ema200),
+        rsi14: JSON.stringify(snap.rsi14),
+        atrPct: JSON.stringify(snap.atrPct),
+        rvol: JSON.stringify(snap.rvol),
+        cascade: snap.cascade,
+        megaSpots: JSON.stringify(snap.megaSpots),
+        smartLevels: JSON.stringify(snap.smartLevels),
+        sessionChangePct: snap.sessionChangePct,
+        sessionVolumeUsd: snap.sessionVolumeUsd,
+      });
+    } catch (e) {
+      console.error(`[indicator pass] ${base} failed:`, e.message);
+    }
+  }
+  if (watched.length) {
+    console.log(`[indicator pass] computed for ${watched.length} watched coin(s): ${watched.join(', ')}`);
+  }
 }
 
 function start(intervalMs) {

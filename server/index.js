@@ -3,6 +3,7 @@ const express = require('express');
 const db = require('./db/database');
 const poller = require('./poller');
 const thresholds = require('./config/thresholds');
+const whitelist = require('./services/watchlist/whitelist');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -32,7 +33,41 @@ app.get('/api/coin/:base', (req, res) => {
     SELECT * FROM coin_ticker_snapshot WHERE base = ?
     ORDER BY ts DESC LIMIT 20
   `).all(base);
-  res.json({ base, lifecycle: lifecycle || null, recentSnapshots: snapshots });
+  const indicators = db.prepare(`
+    SELECT * FROM coin_indicator_snapshot WHERE base = ?
+    ORDER BY ts DESC LIMIT 1
+  `).get(base);
+  res.json({
+    base,
+    lifecycle: lifecycle || null,
+    recentSnapshots: snapshots,
+    indicators: indicators ? {
+      ts: indicators.ts,
+      ema200: JSON.parse(indicators.ema200),
+      rsi14: JSON.parse(indicators.rsi14),
+      atrPct: JSON.parse(indicators.atrPct),
+      rvol: JSON.parse(indicators.rvol),
+      cascade: indicators.cascade,
+      megaSpots: JSON.parse(indicators.megaSpots),
+      smartLevels: JSON.parse(indicators.smartLevels),
+      sessionChangePct: indicators.sessionChangePct,
+      sessionVolumeUsd: indicators.sessionVolumeUsd,
+    } : null,
+  });
+});
+
+app.get('/api/whitelist', (req, res) => {
+  res.json({ majors: thresholds.permanentMajors, whitelist: whitelist.list() });
+});
+
+app.post('/api/whitelist/:base', (req, res) => {
+  whitelist.add(req.params.base);
+  res.json({ ok: true, whitelist: whitelist.list() });
+});
+
+app.delete('/api/whitelist/:base', (req, res) => {
+  whitelist.removeCoin(req.params.base);
+  res.json({ ok: true, whitelist: whitelist.list() });
 });
 
 app.listen(PORT, () => {

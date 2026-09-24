@@ -1,5 +1,6 @@
 const db = require('../../db/database');
-const { ghost, permanentMajors } = require('../../config/thresholds');
+const { ghost } = require('../../config/thresholds');
+const whitelist = require('./whitelist');
 
 const getLifecycle = db.prepare('SELECT * FROM coin_lifecycle WHERE base = ?');
 const update = db.prepare(`
@@ -16,7 +17,7 @@ const update = db.prepare(`
 // movedMeaningfully: true if price moved beyond noise since the last poll
 //   (the "is this coin actually alive" signal, independent of the filter).
 function advance(base, passesFilter, movedMeaningfully, now) {
-  if (permanentMajors.includes(base)) return; // majors never ghost
+  if (whitelist.isBypassed(base)) return; // majors + whitelist never ghost
 
   const existing = getLifecycle.get(base);
   if (!existing || (existing.status !== 'active' && existing.status !== 'ghosted')) return;
