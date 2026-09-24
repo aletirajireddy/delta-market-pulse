@@ -1,0 +1,931 @@
+{
+  "generatedAt": "2026-09-24",
+  "count": 185,
+  "coins": [
+    {
+      "base": "1000BONK",
+      "binanceSymbol": "1000BONKUSDT",
+      "deltaSymbol": "1000BONKUSD"
+    },
+    {
+      "base": "1000FLOKI",
+      "binanceSymbol": "1000FLOKIUSDT",
+      "deltaSymbol": "1000FLOKIUSD"
+    },
+    {
+      "base": "1000PEPE",
+      "binanceSymbol": "1000PEPEUSDT",
+      "deltaSymbol": "1000PEPEUSD"
+    },
+    {
+      "base": "1000SATS",
+      "binanceSymbol": "1000SATSUSDT",
+      "deltaSymbol": "1000SATSUSD"
+    },
+    {
+      "base": "1000SHIB",
+      "binanceSymbol": "1000SHIBUSDT",
+      "deltaSymbol": "1000SHIBUSD"
+    },
+    {
+      "base": "1MBABYDOGE",
+      "binanceSymbol": "1MBABYDOGEUSDT",
+      "deltaSymbol": "1MBABYDOGEUSD"
+    },
+    {
+      "base": "AAVE",
+      "binanceSymbol": "AAVEUSDT",
+      "deltaSymbol": "AAVEUSD"
+    },
+    {
+      "base": "ACT",
+      "binanceSymbol": "ACTUSDT",
+      "deltaSymbol": "ACTUSD"
+    },
+    {
+      "base": "ADA",
+      "binanceSymbol": "ADAUSDT",
+      "deltaSymbol": "ADAUSD"
+    },
+    {
+      "base": "AIO",
+      "binanceSymbol": "AIOUSDT",
+      "deltaSymbol": "AIOUSD"
+    },
+    {
+      "base": "AIOT",
+      "binanceSymbol": "AIOTUSDT",
+      "deltaSymbol": "AIOTUSD"
+    },
+    {
+      "base": "AIXBT",
+      "binanceSymbol": "AIXBTUSDT",
+      "deltaSymbol": "AIXBTUSD"
+    },
+    {
+      "base": "AKE",
+      "binanceSymbol": "AKEUSDT",
+      "deltaSymbol": "AKEUSD"
+    },
+    {
+      "base": "ALLO",
+      "binanceSymbol": "ALLOUSDT",
+      "deltaSymbol": "ALLOUSD"
+    },
+    {
+      "base": "ALT",
+      "binanceSymbol": "ALTUSDT",
+      "deltaSymbol": "ALTUSD"
+    },
+    {
+      "base": "API3",
+      "binanceSymbol": "API3USDT",
+      "deltaSymbol": "API3USD"
+    },
+    {
+      "base": "APT",
+      "binanceSymbol": "APTUSDT",
+      "deltaSymbol": "APTUSD"
+    },
+    {
+      "base": "AR",
+      "binanceSymbol": "ARUSDT",
+      "deltaSymbol": "ARUSD"
+    },
+    {
+      "base": "ARB",
+      "binanceSymbol": "ARBUSDT",
+      "deltaSymbol": "ARBUSD"
+    },
+    {
+      "base": "ARC",
+      "binanceSymbol": "ARCUSDT",
+      "deltaSymbol": "ARCUSD"
+    },
+    {
+      "base": "ARIA",
+      "binanceSymbol": "ARIAUSDT",
+      "deltaSymbol": "ARIAUSD"
+    },
+    {
+      "base": "ASTER",
+      "binanceSymbol": "ASTERUSDT",
+      "deltaSymbol": "ASTERUSD"
+    },
+    {
+      "base": "AUCTION",
+      "binanceSymbol": "AUCTIONUSDT",
+      "deltaSymbol": "AUCTIONUSD"
+    },
+    {
+      "base": "AVAAI",
+      "binanceSymbol": "AVAAIUSDT",
+      "deltaSymbol": "AVAAIUSD"
+    },
+    {
+      "base": "AVAX",
+      "binanceSymbol": "AVAXUSDT",
+      "deltaSymbol": "AVAXUSD"
+    },
+    {
+      "base": "AXS",
+      "binanceSymbol": "AXSUSDT",
+      "deltaSymbol": "AXSUSD"
+    },
+    {
+      "base": "B",
+      "binanceSymbol": "BUSDT",
+      "deltaSymbol": "BUSD"
+    },
+    {
+      "base": "BANK",
+      "binanceSymbol": "BANKUSDT",
+      "deltaSymbol": "BANKUSD"
+    },
+    {
+      "base": "BASED",
+      "binanceSymbol": "BASEDUSDT",
+      "deltaSymbol": "BASEDUSD"
+    },
+    {
+      "base": "BB",
+      "binanceSymbol": "BBUSDT",
+      "deltaSymbol": "BBUSD"
+    },
+    {
+      "base": "BCH",
+      "binanceSymbol": "BCHUSDT",
+      "deltaSymbol": "BCHUSD"
+    },
+    {
+      "base": "BEAT",
+      "binanceSymbol": "BEATUSDT",
+      "deltaSymbol": "BEATUSD"
+    },
+    {
+      "base": "BERA",
+      "binanceSymbol": "BERAUSDT",
+      "deltaSymbol": "BERAUSD"
+    },
+    {
+      "base": "BIO",
+      "binanceSymbol": "BIOUSDT",
+      "deltaSymbol": "BIOUSD"
+    },
+    {
+      "base": "BLESS",
+      "binanceSymbol": "BLESSUSDT",
+      "deltaSymbol": "BLESSUSD"
+    },
+    {
+      "base": "BLUR",
+      "binanceSymbol": "BLURUSDT",
+      "deltaSymbol": "BLURUSD"
+    },
+    {
+      "base": "BMT",
+      "binanceSymbol": "BMTUSDT",
+      "deltaSymbol": "BMTUSD"
+    },
+    {
+      "base": "BNB",
+      "binanceSymbol": "BNBUSDT",
+      "deltaSymbol": "BNBUSD"
+    },
+    {
+      "base": "BTC",
+      "binanceSymbol": "BTCUSDT",
+      "deltaSymbol": "BTCUSD"
+    },
+    {
+      "base": "CAKE",
+      "binanceSymbol": "CAKEUSDT",
+      "deltaSymbol": "CAKEUSD"
+    },
+    {
+      "base": "CHIP",
+      "binanceSymbol": "CHIPUSDT",
+      "deltaSymbol": "CHIPUSD"
+    },
+    {
+      "base": "COAI",
+      "binanceSymbol": "COAIUSDT",
+      "deltaSymbol": "COAIUSD"
+    },
+    {
+      "base": "COOKIE",
+      "binanceSymbol": "COOKIEUSDT",
+      "deltaSymbol": "COOKIEUSD"
+    },
+    {
+      "base": "CRCLX",
+      "binanceSymbol": "CRCLXUSDT",
+      "deltaSymbol": "CRCLXUSD"
+    },
+    {
+      "base": "CROSS",
+      "binanceSymbol": "CROSSUSDT",
+      "deltaSymbol": "CROSSUSD"
+    },
+    {
+      "base": "DASH",
+      "binanceSymbol": "DASHUSDT",
+      "deltaSymbol": "DASHUSD"
+    },
+    {
+      "base": "DEEP",
+      "binanceSymbol": "DEEPUSDT",
+      "deltaSymbol": "DEEPUSD"
+    },
+    {
+      "base": "DOGE",
+      "binanceSymbol": "DOGEUSDT",
+      "deltaSymbol": "DOGEUSD"
+    },
+    {
+      "base": "DOGS",
+      "binanceSymbol": "DOGSUSDT",
+      "deltaSymbol": "DOGSUSD"
+    },
+    {
+      "base": "DOT",
+      "binanceSymbol": "DOTUSDT",
+      "deltaSymbol": "DOTUSD"
+    },
+    {
+      "base": "DUSK",
+      "binanceSymbol": "DUSKUSDT",
+      "deltaSymbol": "DUSKUSD"
+    },
+    {
+      "base": "DYDX",
+      "binanceSymbol": "DYDXUSDT",
+      "deltaSymbol": "DYDXUSD"
+    },
+    {
+      "base": "EDEN",
+      "binanceSymbol": "EDENUSDT",
+      "deltaSymbol": "EDENUSD"
+    },
+    {
+      "base": "EIGEN",
+      "binanceSymbol": "EIGENUSDT",
+      "deltaSymbol": "EIGENUSD"
+    },
+    {
+      "base": "ENA",
+      "binanceSymbol": "ENAUSDT",
+      "deltaSymbol": "ENAUSD"
+    },
+    {
+      "base": "ENJ",
+      "binanceSymbol": "ENJUSDT",
+      "deltaSymbol": "ENJUSD"
+    },
+    {
+      "base": "ESPORTS",
+      "binanceSymbol": "ESPORTSUSDT",
+      "deltaSymbol": "ESPORTSUSD"
+    },
+    {
+      "base": "ETC",
+      "binanceSymbol": "ETCUSDT",
+      "deltaSymbol": "ETCUSD"
+    },
+    {
+      "base": "ETH",
+      "binanceSymbol": "ETHUSDT",
+      "deltaSymbol": "ETHUSD"
+    },
+    {
+      "base": "ETHFI",
+      "binanceSymbol": "ETHFIUSDT",
+      "deltaSymbol": "ETHFIUSD"
+    },
+    {
+      "base": "EVAA",
+      "binanceSymbol": "EVAAUSDT",
+      "deltaSymbol": "EVAAUSD"
+    },
+    {
+      "base": "FARTCOIN",
+      "binanceSymbol": "FARTCOINUSDT",
+      "deltaSymbol": "FARTCOINUSD"
+    },
+    {
+      "base": "FF",
+      "binanceSymbol": "FFUSDT",
+      "deltaSymbol": "FFUSD"
+    },
+    {
+      "base": "FIL",
+      "binanceSymbol": "FILUSDT",
+      "deltaSymbol": "FILUSD"
+    },
+    {
+      "base": "FRAX",
+      "binanceSymbol": "FRAXUSDT",
+      "deltaSymbol": "FRAXUSD"
+    },
+    {
+      "base": "GALA",
+      "binanceSymbol": "GALAUSDT",
+      "deltaSymbol": "GALAUSD"
+    },
+    {
+      "base": "GIGGLE",
+      "binanceSymbol": "GIGGLEUSDT",
+      "deltaSymbol": "GIGGLEUSD"
+    },
+    {
+      "base": "GLM",
+      "binanceSymbol": "GLMUSDT",
+      "deltaSymbol": "GLMUSD"
+    },
+    {
+      "base": "GOAT",
+      "binanceSymbol": "GOATUSDT",
+      "deltaSymbol": "GOATUSD"
+    },
+    {
+      "base": "GRAM",
+      "binanceSymbol": "GRAMUSDT",
+      "deltaSymbol": "GRAMUSD"
+    },
+    {
+      "base": "GRIFFAIN",
+      "binanceSymbol": "GRIFFAINUSDT",
+      "deltaSymbol": "GRIFFAINUSD"
+    },
+    {
+      "base": "H",
+      "binanceSymbol": "HUSDT",
+      "deltaSymbol": "HUSD"
+    },
+    {
+      "base": "HANA",
+      "binanceSymbol": "HANAUSDT",
+      "deltaSymbol": "HANAUSD"
+    },
+    {
+      "base": "HBAR",
+      "binanceSymbol": "HBARUSDT",
+      "deltaSymbol": "HBARUSD"
+    },
+    {
+      "base": "HIVE",
+      "binanceSymbol": "HIVEUSDT",
+      "deltaSymbol": "HIVEUSD"
+    },
+    {
+      "base": "HYPE",
+      "binanceSymbol": "HYPEUSDT",
+      "deltaSymbol": "HYPEUSD"
+    },
+    {
+      "base": "IN",
+      "binanceSymbol": "INUSDT",
+      "deltaSymbol": "INUSD"
+    },
+    {
+      "base": "INIT",
+      "binanceSymbol": "INITUSDT",
+      "deltaSymbol": "INITUSD"
+    },
+    {
+      "base": "INJ",
+      "binanceSymbol": "INJUSDT",
+      "deltaSymbol": "INJUSD"
+    },
+    {
+      "base": "IO",
+      "binanceSymbol": "IOUSDT",
+      "deltaSymbol": "IOUSD"
+    },
+    {
+      "base": "IOTA",
+      "binanceSymbol": "IOTAUSDT",
+      "deltaSymbol": "IOTAUSD"
+    },
+    {
+      "base": "JASMY",
+      "binanceSymbol": "JASMYUSDT",
+      "deltaSymbol": "JASMYUSD"
+    },
+    {
+      "base": "JTO",
+      "binanceSymbol": "JTOUSDT",
+      "deltaSymbol": "JTOUSD"
+    },
+    {
+      "base": "JUP",
+      "binanceSymbol": "JUPUSDT",
+      "deltaSymbol": "JUPUSD"
+    },
+    {
+      "base": "KAITO",
+      "binanceSymbol": "KAITOUSDT",
+      "deltaSymbol": "KAITOUSD"
+    },
+    {
+      "base": "KITE",
+      "binanceSymbol": "KITEUSDT",
+      "deltaSymbol": "KITEUSD"
+    },
+    {
+      "base": "KSM",
+      "binanceSymbol": "KSMUSDT",
+      "deltaSymbol": "KSMUSD"
+    },
+    {
+      "base": "LAB",
+      "binanceSymbol": "LABUSDT",
+      "deltaSymbol": "LABUSD"
+    },
+    {
+      "base": "LAYER",
+      "binanceSymbol": "LAYERUSDT",
+      "deltaSymbol": "LAYERUSD"
+    },
+    {
+      "base": "LDO",
+      "binanceSymbol": "LDOUSDT",
+      "deltaSymbol": "LDOUSD"
+    },
+    {
+      "base": "LIGHT",
+      "binanceSymbol": "LIGHTUSDT",
+      "deltaSymbol": "LIGHTUSD"
+    },
+    {
+      "base": "LINK",
+      "binanceSymbol": "LINKUSDT",
+      "deltaSymbol": "LINKUSD"
+    },
+    {
+      "base": "LISTA",
+      "binanceSymbol": "LISTAUSDT",
+      "deltaSymbol": "LISTAUSD"
+    },
+    {
+      "base": "LIT",
+      "binanceSymbol": "LITUSDT",
+      "deltaSymbol": "LITUSD"
+    },
+    {
+      "base": "LTC",
+      "binanceSymbol": "LTCUSDT",
+      "deltaSymbol": "LTCUSD"
+    },
+    {
+      "base": "M",
+      "binanceSymbol": "MUSDT",
+      "deltaSymbol": "MUSD"
+    },
+    {
+      "base": "MANA",
+      "binanceSymbol": "MANAUSDT",
+      "deltaSymbol": "MANAUSD"
+    },
+    {
+      "base": "MANTA",
+      "binanceSymbol": "MANTAUSDT",
+      "deltaSymbol": "MANTAUSD"
+    },
+    {
+      "base": "MASK",
+      "binanceSymbol": "MASKUSDT",
+      "deltaSymbol": "MASKUSD"
+    },
+    {
+      "base": "ME",
+      "binanceSymbol": "MEUSDT",
+      "deltaSymbol": "MEUSD"
+    },
+    {
+      "base": "MELANIA",
+      "binanceSymbol": "MELANIAUSDT",
+      "deltaSymbol": "MELANIAUSD"
+    },
+    {
+      "base": "MEME",
+      "binanceSymbol": "MEMEUSDT",
+      "deltaSymbol": "MEMEUSD"
+    },
+    {
+      "base": "MMT",
+      "binanceSymbol": "MMTUSDT",
+      "deltaSymbol": "MMTUSD"
+    },
+    {
+      "base": "MON",
+      "binanceSymbol": "MONUSDT",
+      "deltaSymbol": "MONUSD"
+    },
+    {
+      "base": "MOODENG",
+      "binanceSymbol": "MOODENGUSDT",
+      "deltaSymbol": "MOODENGUSD"
+    },
+    {
+      "base": "MOVE",
+      "binanceSymbol": "MOVEUSDT",
+      "deltaSymbol": "MOVEUSD"
+    },
+    {
+      "base": "MUBARAK",
+      "binanceSymbol": "MUBARAKUSDT",
+      "deltaSymbol": "MUBARAKUSD"
+    },
+    {
+      "base": "NEAR",
+      "binanceSymbol": "NEARUSDT",
+      "deltaSymbol": "NEARUSD"
+    },
+    {
+      "base": "NEIRO",
+      "binanceSymbol": "NEIROUSDT",
+      "deltaSymbol": "NEIROUSD"
+    },
+    {
+      "base": "NOT",
+      "binanceSymbol": "NOTUSDT",
+      "deltaSymbol": "NOTUSD"
+    },
+    {
+      "base": "ONDO",
+      "binanceSymbol": "ONDOUSDT",
+      "deltaSymbol": "ONDOUSD"
+    },
+    {
+      "base": "OP",
+      "binanceSymbol": "OPUSDT",
+      "deltaSymbol": "OPUSD"
+    },
+    {
+      "base": "OPN",
+      "binanceSymbol": "OPNUSDT",
+      "deltaSymbol": "OPNUSD"
+    },
+    {
+      "base": "ORDER",
+      "binanceSymbol": "ORDERUSDT",
+      "deltaSymbol": "ORDERUSD"
+    },
+    {
+      "base": "ORDI",
+      "binanceSymbol": "ORDIUSDT",
+      "deltaSymbol": "ORDIUSD"
+    },
+    {
+      "base": "PARTI",
+      "binanceSymbol": "PARTIUSDT",
+      "deltaSymbol": "PARTIUSD"
+    },
+    {
+      "base": "PAXG",
+      "binanceSymbol": "PAXGUSDT",
+      "deltaSymbol": "PAXGUSD"
+    },
+    {
+      "base": "PENDLE",
+      "binanceSymbol": "PENDLEUSDT",
+      "deltaSymbol": "PENDLEUSD"
+    },
+    {
+      "base": "PENGU",
+      "binanceSymbol": "PENGUUSDT",
+      "deltaSymbol": "PENGUUSD"
+    },
+    {
+      "base": "PEOPLE",
+      "binanceSymbol": "PEOPLEUSDT",
+      "deltaSymbol": "PEOPLEUSD"
+    },
+    {
+      "base": "PIEVERSE",
+      "binanceSymbol": "PIEVERSEUSDT",
+      "deltaSymbol": "PIEVERSEUSD"
+    },
+    {
+      "base": "PIPPIN",
+      "binanceSymbol": "PIPPINUSDT",
+      "deltaSymbol": "PIPPINUSD"
+    },
+    {
+      "base": "PNUT",
+      "binanceSymbol": "PNUTUSDT",
+      "deltaSymbol": "PNUTUSD"
+    },
+    {
+      "base": "POL",
+      "binanceSymbol": "POLUSDT",
+      "deltaSymbol": "POLUSD"
+    },
+    {
+      "base": "POPCAT",
+      "binanceSymbol": "POPCATUSDT",
+      "deltaSymbol": "POPCATUSD"
+    },
+    {
+      "base": "PROVE",
+      "binanceSymbol": "PROVEUSDT",
+      "deltaSymbol": "PROVEUSD"
+    },
+    {
+      "base": "PUMP",
+      "binanceSymbol": "PUMPUSDT",
+      "deltaSymbol": "PUMPUSD"
+    },
+    {
+      "base": "RARE",
+      "binanceSymbol": "RAREUSDT",
+      "deltaSymbol": "RAREUSD"
+    },
+    {
+      "base": "RAVE",
+      "binanceSymbol": "RAVEUSDT",
+      "deltaSymbol": "RAVEUSD"
+    },
+    {
+      "base": "RED",
+      "binanceSymbol": "REDUSDT",
+      "deltaSymbol": "REDUSD"
+    },
+    {
+      "base": "RIVER",
+      "binanceSymbol": "RIVERUSDT",
+      "deltaSymbol": "RIVERUSD"
+    },
+    {
+      "base": "RSR",
+      "binanceSymbol": "RSRUSDT",
+      "deltaSymbol": "RSRUSD"
+    },
+    {
+      "base": "RUNE",
+      "binanceSymbol": "RUNEUSDT",
+      "deltaSymbol": "RUNEUSD"
+    },
+    {
+      "base": "S",
+      "binanceSymbol": "SUSDT",
+      "deltaSymbol": "SUSD"
+    },
+    {
+      "base": "SAGA",
+      "binanceSymbol": "SAGAUSDT",
+      "deltaSymbol": "SAGAUSD"
+    },
+    {
+      "base": "SAHARA",
+      "binanceSymbol": "SAHARAUSDT",
+      "deltaSymbol": "SAHARAUSD"
+    },
+    {
+      "base": "SEI",
+      "binanceSymbol": "SEIUSDT",
+      "deltaSymbol": "SEIUSD"
+    },
+    {
+      "base": "SIGN",
+      "binanceSymbol": "SIGNUSDT",
+      "deltaSymbol": "SIGNUSD"
+    },
+    {
+      "base": "SIREN",
+      "binanceSymbol": "SIRENUSDT",
+      "deltaSymbol": "SIRENUSD"
+    },
+    {
+      "base": "SKL",
+      "binanceSymbol": "SKLUSDT",
+      "deltaSymbol": "SKLUSD"
+    },
+    {
+      "base": "SKYAI",
+      "binanceSymbol": "SKYAIUSDT",
+      "deltaSymbol": "SKYAIUSD"
+    },
+    {
+      "base": "SOL",
+      "binanceSymbol": "SOLUSDT",
+      "deltaSymbol": "SOLUSD"
+    },
+    {
+      "base": "SOLV",
+      "binanceSymbol": "SOLVUSDT",
+      "deltaSymbol": "SOLVUSD"
+    },
+    {
+      "base": "SONIC",
+      "binanceSymbol": "SONICUSDT",
+      "deltaSymbol": "SONICUSD"
+    },
+    {
+      "base": "SOPH",
+      "binanceSymbol": "SOPHUSDT",
+      "deltaSymbol": "SOPHUSD"
+    },
+    {
+      "base": "SPX",
+      "binanceSymbol": "SPXUSDT",
+      "deltaSymbol": "SPXUSD"
+    },
+    {
+      "base": "STBL",
+      "binanceSymbol": "STBLUSDT",
+      "deltaSymbol": "STBLUSD"
+    },
+    {
+      "base": "STRK",
+      "binanceSymbol": "STRKUSDT",
+      "deltaSymbol": "STRKUSD"
+    },
+    {
+      "base": "STX",
+      "binanceSymbol": "STXUSDT",
+      "deltaSymbol": "STXUSD"
+    },
+    {
+      "base": "SUI",
+      "binanceSymbol": "SUIUSDT",
+      "deltaSymbol": "SUIUSD"
+    },
+    {
+      "base": "SUN",
+      "binanceSymbol": "SUNUSDT",
+      "deltaSymbol": "SUNUSD"
+    },
+    {
+      "base": "SUSHI",
+      "binanceSymbol": "SUSHIUSDT",
+      "deltaSymbol": "SUSHIUSD"
+    },
+    {
+      "base": "SWARMS",
+      "binanceSymbol": "SWARMSUSDT",
+      "deltaSymbol": "SWARMSUSD"
+    },
+    {
+      "base": "TAC",
+      "binanceSymbol": "TACUSDT",
+      "deltaSymbol": "TACUSD"
+    },
+    {
+      "base": "TAO",
+      "binanceSymbol": "TAOUSDT",
+      "deltaSymbol": "TAOUSD"
+    },
+    {
+      "base": "TIA",
+      "binanceSymbol": "TIAUSDT",
+      "deltaSymbol": "TIAUSD"
+    },
+    {
+      "base": "TLM",
+      "binanceSymbol": "TLMUSDT",
+      "deltaSymbol": "TLMUSD"
+    },
+    {
+      "base": "TNSR",
+      "binanceSymbol": "TNSRUSDT",
+      "deltaSymbol": "TNSRUSD"
+    },
+    {
+      "base": "TOWNS",
+      "binanceSymbol": "TOWNSUSDT",
+      "deltaSymbol": "TOWNSUSD"
+    },
+    {
+      "base": "TRB",
+      "binanceSymbol": "TRBUSDT",
+      "deltaSymbol": "TRBUSD"
+    },
+    {
+      "base": "TRUMP",
+      "binanceSymbol": "TRUMPUSDT",
+      "deltaSymbol": "TRUMPUSD"
+    },
+    {
+      "base": "TRX",
+      "binanceSymbol": "TRXUSDT",
+      "deltaSymbol": "TRXUSD"
+    },
+    {
+      "base": "TST",
+      "binanceSymbol": "TSTUSDT",
+      "deltaSymbol": "TSTUSD"
+    },
+    {
+      "base": "UNI",
+      "binanceSymbol": "UNIUSDT",
+      "deltaSymbol": "UNIUSD"
+    },
+    {
+      "base": "USUAL",
+      "binanceSymbol": "USUALUSDT",
+      "deltaSymbol": "USUALUSD"
+    },
+    {
+      "base": "VANA",
+      "binanceSymbol": "VANAUSDT",
+      "deltaSymbol": "VANAUSD"
+    },
+    {
+      "base": "VELVET",
+      "binanceSymbol": "VELVETUSDT",
+      "deltaSymbol": "VELVETUSD"
+    },
+    {
+      "base": "VIRTUAL",
+      "binanceSymbol": "VIRTUALUSDT",
+      "deltaSymbol": "VIRTUALUSD"
+    },
+    {
+      "base": "VVV",
+      "binanceSymbol": "VVVUSDT",
+      "deltaSymbol": "VVVUSD"
+    },
+    {
+      "base": "WCT",
+      "binanceSymbol": "WCTUSDT",
+      "deltaSymbol": "WCTUSD"
+    },
+    {
+      "base": "WIF",
+      "binanceSymbol": "WIFUSDT",
+      "deltaSymbol": "WIFUSD"
+    },
+    {
+      "base": "WLD",
+      "binanceSymbol": "WLDUSDT",
+      "deltaSymbol": "WLDUSD"
+    },
+    {
+      "base": "WLFI",
+      "binanceSymbol": "WLFIUSDT",
+      "deltaSymbol": "WLFIUSD"
+    },
+    {
+      "base": "XAI",
+      "binanceSymbol": "XAIUSDT",
+      "deltaSymbol": "XAIUSD"
+    },
+    {
+      "base": "XAN",
+      "binanceSymbol": "XANUSDT",
+      "deltaSymbol": "XANUSD"
+    },
+    {
+      "base": "XAUT",
+      "binanceSymbol": "XAUTUSDT",
+      "deltaSymbol": "XAUTUSD"
+    },
+    {
+      "base": "XLM",
+      "binanceSymbol": "XLMUSDT",
+      "deltaSymbol": "XLMUSD"
+    },
+    {
+      "base": "XMR",
+      "binanceSymbol": "XMRUSDT",
+      "deltaSymbol": "XMRUSD"
+    },
+    {
+      "base": "XPL",
+      "binanceSymbol": "XPLUSDT",
+      "deltaSymbol": "XPLUSD"
+    },
+    {
+      "base": "XRP",
+      "binanceSymbol": "XRPUSDT",
+      "deltaSymbol": "XRPUSD"
+    },
+    {
+      "base": "ZEC",
+      "binanceSymbol": "ZECUSDT",
+      "deltaSymbol": "ZECUSD"
+    },
+    {
+      "base": "ZEN",
+      "binanceSymbol": "ZENUSDT",
+      "deltaSymbol": "ZENUSD"
+    },
+    {
+      "base": "ZK",
+      "binanceSymbol": "ZKUSDT",
+      "deltaSymbol": "ZKUSD"
+    },
+    {
+      "base": "ZORA",
+      "binanceSymbol": "ZORAUSDT",
+      "deltaSymbol": "ZORAUSD"
+    },
+    {
+      "base": "ZRO",
+      "binanceSymbol": "ZROUSDT",
+      "deltaSymbol": "ZROUSD"
+    }
+  ]
+}

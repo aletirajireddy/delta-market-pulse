@@ -1,0 +1,17 @@
+{
+  "name": "delta-market-pulse",
+  "version": "0.1.0",
+  "description": "API-driven crypto price-action dashboard (Binance + Delta Exchange India), independent of TradingView.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "technicalindicators": "^3.1.0"
+  }
+}
