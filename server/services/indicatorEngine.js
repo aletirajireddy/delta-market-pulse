@@ -5,7 +5,7 @@ const { checkCascade } = require('./indicators/cascade');
 const { computeSmartLevels, fibLevels } = require('./indicators/smartLevels');
 const { getSessionMetrics } = require('./sessionMetrics');
 
-const TF_MAP = { m5: '5m', m15: '15m', m30: '30m', h1: '1h', h4: '4h' };
+const TF_MAP = { m1: '1m', m5: '5m', m15: '15m', m30: '30m', h1: '1h', h4: '4h' };
 
 function toCandle(k) {
   return { open: +k[1], high: +k[2], low: +k[3], close: +k[4], volume: +k[5] };
@@ -24,6 +24,7 @@ async function computeFullSnapshot(binanceSymbol) {
   }
 
   const pick = (field) => ({
+    m1: tfResults.m1.indicators?.[field] ?? null,
     m5: tfResults.m5.indicators?.[field] ?? null,
     m15: tfResults.m15.indicators?.[field] ?? null,
     m30: tfResults.m30.indicators?.[field] ?? null,
@@ -33,9 +34,11 @@ async function computeFullSnapshot(binanceSymbol) {
   const ema200 = pick('ema200');
   const rsi14 = pick('rsi14');
   const atrPct = pick('atrPct');
+  const atr14 = pick('atr14');
   const rvol = pick('rvol');
 
-  const cascade = checkCascade(ema200);
+  const cascade = checkCascade(ema200, ['h4', 'h1', 'm15']);
+  const counterCascade = checkCascade(ema200, ['m5', 'm1']);
   const megaSpots = findMegaSpots(ema200);
 
   // Base/neck reuse the h1 candles already fetched (drop the still-forming
@@ -59,7 +62,8 @@ async function computeFullSnapshot(binanceSymbol) {
   const session = await getSessionMetrics(binanceSymbol);
 
   return {
-    ema200, rsi14, atrPct, rvol, cascade, megaSpots,
+    ema200, rsi14, atrPct, atr14, rvol, cascade, counterCascade, megaSpots,
+    price: tfResults.m1.indicators?.close ?? tfResults.m5.indicators?.close ?? null,
     smartLevels: { daily: dailyLevels, hourly: hourlyLevels, fib },
     sessionChangePct: session.changePct,
     sessionVolumeUsd: session.volumeUsd,

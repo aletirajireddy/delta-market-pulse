@@ -33,7 +33,7 @@ function computeIndicators(candles, { rvolLookback = 20 } = {}) {
     ema200,
     ema200DistPct: ema200 ? ((lastClose - ema200) / ema200) * 100 : null,
     rsi14,
-    atr14,
+    atr14, // raw absolute ATR (price units), needed for noise-filtered counter-trend checks
     atrPct,
     rvol,
   };

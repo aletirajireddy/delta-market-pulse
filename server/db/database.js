@@ -42,11 +42,14 @@ CREATE TABLE IF NOT EXISTS oi_baseline (
 CREATE TABLE IF NOT EXISTS coin_indicator_snapshot (
   base TEXT NOT NULL,
   ts INTEGER NOT NULL,
-  ema200 TEXT NOT NULL,      -- JSON {m5,m15,h1,h4}
-  rsi14 TEXT NOT NULL,       -- JSON {m5,m15,h1,h4}
-  atrPct TEXT NOT NULL,      -- JSON {m5,m15,h1,h4}
-  rvol TEXT NOT NULL,        -- JSON {m5,m15,h1,h4}
-  cascade TEXT NOT NULL,     -- 'bull' | 'bear' | 'neutral'
+  price REAL,
+  ema200 TEXT NOT NULL,      -- JSON {m1,m5,m15,m30,h1,h4}
+  rsi14 TEXT NOT NULL,       -- JSON {m1,m5,m15,m30,h1,h4}
+  atrPct TEXT NOT NULL,      -- JSON {m1,m5,m15,m30,h1,h4}
+  atr14 TEXT,                -- JSON {m1,m5,m15,m30,h1,h4} raw absolute ATR
+  rvol TEXT NOT NULL,        -- JSON {m1,m5,m15,m30,h1,h4}
+  cascade TEXT NOT NULL,     -- 'bull' | 'bear' | 'neutral' (h4->h1->m15 body)
+  counterCascade TEXT,       -- 'bull' | 'bear' | 'neutral' (m5->m1 wick)
   megaSpots TEXT NOT NULL,   -- JSON array of {price,count,tfs}
   smartLevels TEXT NOT NULL, -- JSON {daily:{...}, hourly:{...}, fib:{...}}
   sessionChangePct REAL,
@@ -94,5 +97,18 @@ CREATE TABLE IF NOT EXISTS smart_alert_events (
 );
 CREATE INDEX IF NOT EXISTS idx_alert_events_alert ON smart_alert_events(alert_id, id DESC);
 `);
+
+// Safe additive migration — CREATE TABLE IF NOT EXISTS doesn't alter an
+// already-existing table, so new columns added after the table's first
+// creation need this. Same pattern as the old project's _safeAddColumn.
+function safeAddColumn(table, columnDef, columnName) {
+  const cols = db.prepare(`PRAGMA table_info(${table})`).all();
+  if (!cols.find((c) => c.name === columnName)) {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${columnDef}`);
+  }
+}
+safeAddColumn('coin_indicator_snapshot', 'price REAL', 'price');
+safeAddColumn('coin_indicator_snapshot', 'atr14 TEXT', 'atr14');
+safeAddColumn('coin_indicator_snapshot', 'counterCascade TEXT', 'counterCascade');
 
 module.exports = db;

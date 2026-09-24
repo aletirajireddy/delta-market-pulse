@@ -7,6 +7,7 @@ const whitelist = require('./services/watchlist/whitelist');
 const rsiGridWall = require('./services/indicators/rsiGridWall');
 const momentumScanner = require('./services/momentumScanner');
 const smartAlertsRouter = require('./routes/smartAlerts');
+const { buildCandle } = require('./services/indicators/emaCandleWall');
 
 const app = express();
 app.use(express.json());
@@ -105,6 +106,28 @@ app.get('/api/distance-tracker', (req, res) => {
   }
   coins.sort((a, b) => Math.abs(a.nearestDist ?? 999) - Math.abs(b.nearestDist ?? 999));
   res.json({ coins });
+});
+
+app.get('/api/ema-candle-wall', (req, res) => {
+  const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
+  const coins = [];
+  for (const base of bases) {
+    const row = db.prepare(`SELECT * FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
+    if (!row) continue;
+    const snap = {
+      base,
+      price: row.price,
+      ema200: JSON.parse(row.ema200),
+      atr14: row.atr14 ? JSON.parse(row.atr14) : {},
+      cascade: row.cascade,
+      counterCascade: row.counterCascade,
+      sessionChangePct: row.sessionChangePct,
+    };
+    coins.push(buildCandle(snap));
+  }
+  const order = { bull: 0, bear: 1, neutral: 2 };
+  coins.sort((a, b) => (order[a.cascade] ?? 3) - (order[b.cascade] ?? 3));
+  res.json({ coins, count: coins.length });
 });
 
 app.get('/api/momentum-scan', (req, res) => {
