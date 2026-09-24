@@ -5,7 +5,9 @@ on **public Binance + Delta Exchange India endpoints only** — no TradingView
 dependency, no API key required for any market data used here.
 
 This is a separate project from `tv-recommendation-fullstack`. No code or
-runtime is shared between the two.
+runtime is shared between the two, but they run under the same PM2 daemon on
+the same machine — see [PORTS.md](PORTS.md) before touching any port, PM2
+app name, or Tailscale route in either project.
 
 ## Why
 

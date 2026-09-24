@@ -218,7 +218,18 @@ app.delete('/api/whitelist/:base', (req, res) => {
   res.json({ ok: true, whitelist: whitelist.list() });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`delta-market-pulse listening on :${PORT}`);
   poller.start(thresholds.pollIntervalMs);
+});
+
+// Fail loudly instead of a silent/confusing crash — port collisions across
+// this project and tv-recommendation-fullstack are a known risk on this
+// machine (both run under the same PM2 daemon). See PORTS.md before
+// changing PORT or killing anything on this port.
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`\nPort ${PORT} is already in use. Check PORTS.md for what's supposed to own this port before killing anything — do not assume it's safe to just pick a different port.\n`);
+  }
+  throw err;
 });

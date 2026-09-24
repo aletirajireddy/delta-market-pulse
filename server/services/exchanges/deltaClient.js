@@ -1,9 +1,11 @@
+const { fetchWithRetry } = require('./httpRetry');
+
 const BASE_URL = process.env.DELTA_BASE_URL || 'https://api.india.delta.exchange';
 
 async function get(path, params = {}) {
   const qs = new URLSearchParams(params).toString();
   const url = `${BASE_URL}${path}${qs ? `?${qs}` : ''}`;
-  const res = await fetch(url);
+  const res = await fetchWithRetry(() => fetch(url), { label: `Delta ${path}` });
   if (!res.ok) {
     throw new Error(`Delta ${path} failed: ${res.status} ${await res.text()}`);
   }

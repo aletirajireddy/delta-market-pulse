@@ -1,9 +1,11 @@
+const { fetchWithRetry } = require('./httpRetry');
+
 const BASE_URL = process.env.BINANCE_BASE_URL || 'https://fapi.binance.com';
 
 async function get(path, params = {}) {
   const qs = new URLSearchParams(params).toString();
   const url = `${BASE_URL}${path}${qs ? `?${qs}` : ''}`;
-  const res = await fetch(url);
+  const res = await fetchWithRetry(() => fetch(url), { label: `Binance ${path}` });
   if (!res.ok) {
     throw new Error(`Binance ${path} failed: ${res.status} ${await res.text()}`);
   }
