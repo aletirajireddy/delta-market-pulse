@@ -4,6 +4,7 @@ const db = require('./db/database');
 const poller = require('./poller');
 const thresholds = require('./config/thresholds');
 const whitelist = require('./services/watchlist/whitelist');
+const rsiGridWall = require('./services/indicators/rsiGridWall');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -54,6 +55,31 @@ app.get('/api/coin/:base', (req, res) => {
       sessionVolumeUsd: indicators.sessionVolumeUsd,
     } : null,
   });
+});
+
+app.get('/api/rsi-grid-wall', (req, res) => {
+  const config = {
+    seriesTfs: (req.query.series_tfs || 'h1,m30').split(',').map((s) => s.trim()),
+    tempTf: (req.query.temp_tf || 'm15').trim(),
+    oversold: parseFloat(req.query.oversold ?? 30),
+    overbought: parseFloat(req.query.overbought ?? 70),
+    pullbackZone: parseFloat(req.query.pullback_zone ?? 5),
+  };
+
+  const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
+  const coins = [];
+  for (const base of bases) {
+    const rows = db.prepare(`
+      SELECT ts, rsi14 FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 2
+    `).all(base);
+    if (!rows.length) continue;
+    const rsi = JSON.parse(rows[0].rsi14);
+    const prevRsi = rows[1] ? JSON.parse(rows[1].rsi14) : null;
+    const result = rsiGridWall.classify(rsi, prevRsi, config);
+    coins.push({ base, ts: rows[0].ts, rsi, ...result });
+  }
+
+  res.json({ coins: rsiGridWall.sortCoins(coins), config });
 });
 
 app.get('/api/whitelist', (req, res) => {

@@ -5,7 +5,7 @@ const { checkCascade } = require('./indicators/cascade');
 const { computeSmartLevels, fibLevels } = require('./indicators/smartLevels');
 const { getSessionMetrics } = require('./sessionMetrics');
 
-const TF_MAP = { m5: '5m', m15: '15m', h1: '1h', h4: '4h' };
+const TF_MAP = { m5: '5m', m15: '15m', m30: '30m', h1: '1h', h4: '4h' };
 
 function toCandle(k) {
   return { open: +k[1], high: +k[2], low: +k[3], close: +k[4], volume: +k[5] };
@@ -23,30 +23,17 @@ async function computeFullSnapshot(binanceSymbol) {
     tfResults[key] = { candles: kl.map(toCandle), indicators: computeIndicators(kl.map(toCandle)) };
   }
 
-  const ema200 = {
-    m5: tfResults.m5.indicators?.ema200 ?? null,
-    m15: tfResults.m15.indicators?.ema200 ?? null,
-    h1: tfResults.h1.indicators?.ema200 ?? null,
-    h4: tfResults.h4.indicators?.ema200 ?? null,
-  };
-  const rsi14 = {
-    m5: tfResults.m5.indicators?.rsi14 ?? null,
-    m15: tfResults.m15.indicators?.rsi14 ?? null,
-    h1: tfResults.h1.indicators?.rsi14 ?? null,
-    h4: tfResults.h4.indicators?.rsi14 ?? null,
-  };
-  const atrPct = {
-    m5: tfResults.m5.indicators?.atrPct ?? null,
-    m15: tfResults.m15.indicators?.atrPct ?? null,
-    h1: tfResults.h1.indicators?.atrPct ?? null,
-    h4: tfResults.h4.indicators?.atrPct ?? null,
-  };
-  const rvol = {
-    m5: tfResults.m5.indicators?.rvol ?? null,
-    m15: tfResults.m15.indicators?.rvol ?? null,
-    h1: tfResults.h1.indicators?.rvol ?? null,
-    h4: tfResults.h4.indicators?.rvol ?? null,
-  };
+  const pick = (field) => ({
+    m5: tfResults.m5.indicators?.[field] ?? null,
+    m15: tfResults.m15.indicators?.[field] ?? null,
+    m30: tfResults.m30.indicators?.[field] ?? null,
+    h1: tfResults.h1.indicators?.[field] ?? null,
+    h4: tfResults.h4.indicators?.[field] ?? null,
+  });
+  const ema200 = pick('ema200');
+  const rsi14 = pick('rsi14');
+  const atrPct = pick('atrPct');
+  const rvol = pick('rvol');
 
   const cascade = checkCascade(ema200);
   const megaSpots = findMegaSpots(ema200);
