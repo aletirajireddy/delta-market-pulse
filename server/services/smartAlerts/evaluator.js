@@ -1,11 +1,11 @@
 const db = require('../../db/database');
 const service = require('./service');
 
+// price comes from the same row as ema200/atrPct — the indicator snapshot's
+// own price, already pulled from the coin's pinned source exchange, never a
+// separately-sourced value that could disagree with the EMA/ATR it's next to.
 const getLatestIndicator = db.prepare(`
-  SELECT ema200, atrPct FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1
-`);
-const getLatestPrice = db.prepare(`
-  SELECT price FROM coin_ticker_snapshot WHERE base = ? AND source = 'binance' ORDER BY ts DESC LIMIT 1
+  SELECT price, ema200, atrPct FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1
 `);
 
 // Called once per poll cycle (after the indicator pass, so this cycle's
@@ -27,14 +27,13 @@ function evaluateAll() {
 
   for (const a of stillActive) {
     const ind = getLatestIndicator.get(a.base);
-    const priceRow = getLatestPrice.get(a.base);
-    if (!ind || !priceRow) continue;
+    if (!ind) continue;
 
     const ema200 = JSON.parse(ind.ema200);
     const atrPct = JSON.parse(ind.atrPct);
     const ema = ema200[a.timeframe];
     const atr = atrPct[a.timeframe];
-    const price = priceRow.price;
+    const price = ind.price;
     if (price == null || ema == null) continue;
 
     const newSide = service.sideOf(price, ema);

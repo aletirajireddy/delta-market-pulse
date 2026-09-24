@@ -1,4 +1,4 @@
-const binance = require('./exchanges/binanceClient');
+const marketData = require('./marketData');
 const { computeIndicators } = require('./indicators/technical');
 const { findMegaSpots } = require('./indicators/megaSpot');
 const { checkCascade } = require('./indicators/cascade');
@@ -17,10 +17,11 @@ function toCandle(k) {
 // UTC-session change%/volume. Only called for watched coins (qualifying,
 // active, ghosted, majors, whitelist) — not the full 185-coin universe,
 // to stay well under exchange rate limits.
-async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
+async function computeFullSnapshot(coin, now = Date.now()) {
+  const base = coin.base;
   const tfResults = {};
   for (const [key, interval] of Object.entries(TF_MAP)) {
-    const kl = await binance.getKlines(binanceSymbol, interval, 300);
+    const kl = await marketData.getKlinesForCoin(coin, interval, 300);
     tfResults[key] = { candles: kl.map(toCandle), indicators: computeIndicators(kl.map(toCandle)) };
   }
 
@@ -57,9 +58,9 @@ async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
   // last one). Daily/weekly need their own small fetches.
   const hourlyLevels = computeSmartLevels(tfResults.h1.candles.slice(0, -1));
   const [kl1d, klW, klM] = await Promise.all([
-    binance.getKlines(binanceSymbol, '1d', 5),
-    binance.getKlines(binanceSymbol, '1w', 5),
-    binance.getKlines(binanceSymbol, '1M', 5),
+    marketData.getKlinesForCoin(coin, '1d', 5),
+    marketData.getKlinesForCoin(coin, '1w', 5),
+    marketData.getKlinesForCoin(coin, '1M', 5),
   ]);
   const d = kl1d.map(toCandle);
   const w = klW.map(toCandle);
@@ -80,7 +81,7 @@ async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
     monthly: toOHLC(priorMonthly),
   };
 
-  const session = await getSessionMetrics(binanceSymbol);
+  const session = await getSessionMetrics(coin);
 
   return {
     ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots,

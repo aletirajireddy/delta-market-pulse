@@ -1,929 +1,1669 @@
 {
-  "generatedAt": "2026-09-24",
+  "generatedAt": "2026-09-25",
   "count": 185,
   "coins": [
     {
       "base": "1000BONK",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "1000BONKUSDT",
       "binanceSymbol": "1000BONKUSDT",
       "deltaSymbol": "1000BONKUSD"
     },
     {
       "base": "1000FLOKI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "1000FLOKIUSDT",
       "binanceSymbol": "1000FLOKIUSDT",
       "deltaSymbol": "1000FLOKIUSD"
     },
     {
       "base": "1000PEPE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "1000PEPEUSDT",
       "binanceSymbol": "1000PEPEUSDT",
       "deltaSymbol": "1000PEPEUSD"
     },
     {
       "base": "1000SATS",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "1000SATSUSDT",
       "binanceSymbol": "1000SATSUSDT",
       "deltaSymbol": "1000SATSUSD"
     },
     {
       "base": "1000SHIB",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "1000SHIBUSDT",
       "binanceSymbol": "1000SHIBUSDT",
       "deltaSymbol": "1000SHIBUSD"
     },
     {
       "base": "1MBABYDOGE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "1MBABYDOGEUSDT",
       "binanceSymbol": "1MBABYDOGEUSDT",
       "deltaSymbol": "1MBABYDOGEUSD"
     },
     {
       "base": "AAVE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "AAVEUSDT",
       "binanceSymbol": "AAVEUSDT",
       "deltaSymbol": "AAVEUSD"
     },
     {
       "base": "ACT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ACTUSDT",
       "binanceSymbol": "ACTUSDT",
       "deltaSymbol": "ACTUSD"
     },
     {
       "base": "ADA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ADAUSDT",
       "binanceSymbol": "ADAUSDT",
       "deltaSymbol": "ADAUSD"
     },
     {
-      "base": "AIO",
-      "binanceSymbol": "AIOUSDT",
-      "deltaSymbol": "AIOUSD"
-    },
-    {
       "base": "AIOT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "AIOTUSDT",
       "binanceSymbol": "AIOTUSDT",
       "deltaSymbol": "AIOTUSD"
     },
     {
+      "base": "AIO",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "AIOUSDT",
+      "binanceSymbol": "AIOUSDT",
+      "deltaSymbol": "AIOUSD"
+    },
+    {
       "base": "AIXBT",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "AIXBTUSDT",
       "binanceSymbol": "AIXBTUSDT",
       "deltaSymbol": "AIXBTUSD"
     },
     {
       "base": "AKE",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "AKEUSDT",
       "binanceSymbol": "AKEUSDT",
       "deltaSymbol": "AKEUSD"
     },
     {
       "base": "ALLO",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "ALLOUSDT",
       "binanceSymbol": "ALLOUSDT",
       "deltaSymbol": "ALLOUSD"
     },
     {
       "base": "ALT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ALTUSDT",
       "binanceSymbol": "ALTUSDT",
       "deltaSymbol": "ALTUSD"
     },
     {
       "base": "API3",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "API3USDT",
       "binanceSymbol": "API3USDT",
       "deltaSymbol": "API3USD"
     },
     {
       "base": "APT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "APTUSDT",
       "binanceSymbol": "APTUSDT",
       "deltaSymbol": "APTUSD"
     },
     {
-      "base": "AR",
-      "binanceSymbol": "ARUSDT",
-      "deltaSymbol": "ARUSD"
-    },
-    {
       "base": "ARB",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ARBUSDT",
       "binanceSymbol": "ARBUSDT",
       "deltaSymbol": "ARBUSD"
     },
     {
       "base": "ARC",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "ARCUSDT",
       "binanceSymbol": "ARCUSDT",
       "deltaSymbol": "ARCUSD"
     },
     {
       "base": "ARIA",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "ARIAUSDT",
       "binanceSymbol": "ARIAUSDT",
       "deltaSymbol": "ARIAUSD"
     },
     {
+      "base": "AR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ARUSDT",
+      "binanceSymbol": "ARUSDT",
+      "deltaSymbol": "ARUSD"
+    },
+    {
       "base": "ASTER",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ASTERUSDT",
       "binanceSymbol": "ASTERUSDT",
       "deltaSymbol": "ASTERUSD"
     },
     {
       "base": "AUCTION",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "AUCTIONUSDT",
       "binanceSymbol": "AUCTIONUSDT",
       "deltaSymbol": "AUCTIONUSD"
     },
     {
       "base": "AVAAI",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "AVAAIUSDT",
       "binanceSymbol": "AVAAIUSDT",
       "deltaSymbol": "AVAAIUSD"
     },
     {
       "base": "AVAX",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "AVAXUSDT",
       "binanceSymbol": "AVAXUSDT",
       "deltaSymbol": "AVAXUSD"
     },
     {
       "base": "AXS",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "AXSUSDT",
       "binanceSymbol": "AXSUSDT",
       "deltaSymbol": "AXSUSD"
     },
     {
-      "base": "B",
-      "binanceSymbol": "BUSDT",
-      "deltaSymbol": "BUSD"
-    },
-    {
       "base": "BANK",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "BANKUSDT",
       "binanceSymbol": "BANKUSDT",
       "deltaSymbol": "BANKUSD"
     },
     {
       "base": "BASED",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "BASEDUSDT",
       "binanceSymbol": "BASEDUSDT",
       "deltaSymbol": "BASEDUSD"
     },
     {
       "base": "BB",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "BBUSDT",
       "binanceSymbol": "BBUSDT",
       "deltaSymbol": "BBUSD"
     },
     {
       "base": "BCH",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "BCHUSDT",
       "binanceSymbol": "BCHUSDT",
       "deltaSymbol": "BCHUSD"
     },
     {
       "base": "BEAT",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "BEATUSDT",
       "binanceSymbol": "BEATUSDT",
       "deltaSymbol": "BEATUSD"
     },
     {
       "base": "BERA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "BERAUSDT",
       "binanceSymbol": "BERAUSDT",
       "deltaSymbol": "BERAUSD"
     },
     {
       "base": "BIO",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "BIOUSDT",
       "binanceSymbol": "BIOUSDT",
       "deltaSymbol": "BIOUSD"
     },
     {
       "base": "BLESS",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "BLESSUSDT",
       "binanceSymbol": "BLESSUSDT",
       "deltaSymbol": "BLESSUSD"
     },
     {
       "base": "BLUR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "BLURUSDT",
       "binanceSymbol": "BLURUSDT",
       "deltaSymbol": "BLURUSD"
     },
     {
       "base": "BMT",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "BMTUSDT",
       "binanceSymbol": "BMTUSDT",
       "deltaSymbol": "BMTUSD"
     },
     {
       "base": "BNB",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "BNBUSDT",
       "binanceSymbol": "BNBUSDT",
       "deltaSymbol": "BNBUSD"
     },
     {
       "base": "BTC",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "BTCUSDT",
       "binanceSymbol": "BTCUSDT",
       "deltaSymbol": "BTCUSD"
     },
     {
+      "base": "B",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "BUSDT",
+      "binanceSymbol": "BUSDT",
+      "deltaSymbol": "BUSD"
+    },
+    {
       "base": "CAKE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "CAKEUSDT",
       "binanceSymbol": "CAKEUSDT",
       "deltaSymbol": "CAKEUSD"
     },
     {
       "base": "CHIP",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "CHIPUSDT",
       "binanceSymbol": "CHIPUSDT",
       "deltaSymbol": "CHIPUSD"
     },
     {
       "base": "COAI",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "COAIUSDT",
       "binanceSymbol": "COAIUSDT",
       "deltaSymbol": "COAIUSD"
     },
     {
       "base": "COOKIE",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "COOKIEUSDT",
       "binanceSymbol": "COOKIEUSDT",
       "deltaSymbol": "COOKIEUSD"
     },
     {
       "base": "CRCLX",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "CRCLXUSDT",
       "binanceSymbol": "CRCLXUSDT",
       "deltaSymbol": "CRCLXUSD"
     },
     {
       "base": "CROSS",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "CROSSUSDT",
       "binanceSymbol": "CROSSUSDT",
       "deltaSymbol": "CROSSUSD"
     },
     {
       "base": "DASH",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "DASHUSDT",
       "binanceSymbol": "DASHUSDT",
       "deltaSymbol": "DASHUSD"
     },
     {
       "base": "DEEP",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "DEEPUSDT",
       "binanceSymbol": "DEEPUSDT",
       "deltaSymbol": "DEEPUSD"
     },
     {
       "base": "DOGE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "DOGEUSDT",
       "binanceSymbol": "DOGEUSDT",
       "deltaSymbol": "DOGEUSD"
     },
     {
       "base": "DOGS",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "DOGSUSDT",
       "binanceSymbol": "DOGSUSDT",
       "deltaSymbol": "DOGSUSD"
     },
     {
       "base": "DOT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "DOTUSDT",
       "binanceSymbol": "DOTUSDT",
       "deltaSymbol": "DOTUSD"
     },
     {
       "base": "DUSK",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "DUSKUSDT",
       "binanceSymbol": "DUSKUSDT",
       "deltaSymbol": "DUSKUSD"
     },
     {
       "base": "DYDX",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "DYDXUSDT",
       "binanceSymbol": "DYDXUSDT",
       "deltaSymbol": "DYDXUSD"
     },
     {
       "base": "EDEN",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "EDENUSDT",
       "binanceSymbol": "EDENUSDT",
       "deltaSymbol": "EDENUSD"
     },
     {
       "base": "EIGEN",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "EIGENUSDT",
       "binanceSymbol": "EIGENUSDT",
       "deltaSymbol": "EIGENUSD"
     },
     {
       "base": "ENA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ENAUSDT",
       "binanceSymbol": "ENAUSDT",
       "deltaSymbol": "ENAUSD"
     },
     {
       "base": "ENJ",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ENJUSDT",
       "binanceSymbol": "ENJUSDT",
       "deltaSymbol": "ENJUSD"
     },
     {
       "base": "ESPORTS",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "ESPORTSUSDT",
       "binanceSymbol": "ESPORTSUSDT",
       "deltaSymbol": "ESPORTSUSD"
     },
     {
       "base": "ETC",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ETCUSDT",
       "binanceSymbol": "ETCUSDT",
       "deltaSymbol": "ETCUSD"
     },
     {
-      "base": "ETH",
-      "binanceSymbol": "ETHUSDT",
-      "deltaSymbol": "ETHUSD"
-    },
-    {
       "base": "ETHFI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ETHFIUSDT",
       "binanceSymbol": "ETHFIUSDT",
       "deltaSymbol": "ETHFIUSD"
     },
     {
+      "base": "ETH",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ETHUSDT",
+      "binanceSymbol": "ETHUSDT",
+      "deltaSymbol": "ETHUSD"
+    },
+    {
       "base": "EVAA",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "EVAAUSDT",
       "binanceSymbol": "EVAAUSDT",
       "deltaSymbol": "EVAAUSD"
     },
     {
       "base": "FARTCOIN",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "FARTCOINUSDT",
       "binanceSymbol": "FARTCOINUSDT",
       "deltaSymbol": "FARTCOINUSD"
     },
     {
       "base": "FF",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "FFUSDT",
       "binanceSymbol": "FFUSDT",
       "deltaSymbol": "FFUSD"
     },
     {
       "base": "FIL",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "FILUSDT",
       "binanceSymbol": "FILUSDT",
       "deltaSymbol": "FILUSD"
     },
     {
       "base": "FRAX",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "FRAXUSDT",
       "binanceSymbol": "FRAXUSDT",
       "deltaSymbol": "FRAXUSD"
     },
     {
       "base": "GALA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "GALAUSDT",
       "binanceSymbol": "GALAUSDT",
       "deltaSymbol": "GALAUSD"
     },
     {
       "base": "GIGGLE",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "GIGGLEUSDT",
       "binanceSymbol": "GIGGLEUSDT",
       "deltaSymbol": "GIGGLEUSD"
     },
     {
       "base": "GLM",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "GLMUSDT",
       "binanceSymbol": "GLMUSDT",
       "deltaSymbol": "GLMUSD"
     },
     {
       "base": "GOAT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "GOATUSDT",
       "binanceSymbol": "GOATUSDT",
       "deltaSymbol": "GOATUSD"
     },
     {
       "base": "GRAM",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "GRAMUSDT",
       "binanceSymbol": "GRAMUSDT",
       "deltaSymbol": "GRAMUSD"
     },
     {
       "base": "GRIFFAIN",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "GRIFFAINUSDT",
       "binanceSymbol": "GRIFFAINUSDT",
       "deltaSymbol": "GRIFFAINUSD"
     },
     {
-      "base": "H",
-      "binanceSymbol": "HUSDT",
-      "deltaSymbol": "HUSD"
-    },
-    {
       "base": "HANA",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "HANAUSDT",
       "binanceSymbol": "HANAUSDT",
       "deltaSymbol": "HANAUSD"
     },
     {
       "base": "HBAR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "HBARUSDT",
       "binanceSymbol": "HBARUSDT",
       "deltaSymbol": "HBARUSD"
     },
     {
       "base": "HIVE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "HIVEUSDT",
       "binanceSymbol": "HIVEUSDT",
       "deltaSymbol": "HIVEUSD"
     },
     {
+      "base": "H",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "HUSDT",
+      "binanceSymbol": "HUSDT",
+      "deltaSymbol": "HUSD"
+    },
+    {
       "base": "HYPE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "HYPEUSDT",
       "binanceSymbol": "HYPEUSDT",
       "deltaSymbol": "HYPEUSD"
     },
     {
-      "base": "IN",
-      "binanceSymbol": "INUSDT",
-      "deltaSymbol": "INUSD"
-    },
-    {
       "base": "INIT",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "INITUSDT",
       "binanceSymbol": "INITUSDT",
       "deltaSymbol": "INITUSD"
     },
     {
       "base": "INJ",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "INJUSDT",
       "binanceSymbol": "INJUSDT",
       "deltaSymbol": "INJUSD"
     },
     {
-      "base": "IO",
-      "binanceSymbol": "IOUSDT",
-      "deltaSymbol": "IOUSD"
+      "base": "IN",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "INUSDT",
+      "binanceSymbol": "INUSDT",
+      "deltaSymbol": "INUSD"
     },
     {
       "base": "IOTA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "IOTAUSDT",
       "binanceSymbol": "IOTAUSDT",
       "deltaSymbol": "IOTAUSD"
     },
     {
+      "base": "IO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "IOUSDT",
+      "binanceSymbol": "IOUSDT",
+      "deltaSymbol": "IOUSD"
+    },
+    {
       "base": "JASMY",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "JASMYUSDT",
       "binanceSymbol": "JASMYUSDT",
       "deltaSymbol": "JASMYUSD"
     },
     {
       "base": "JTO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "JTOUSDT",
       "binanceSymbol": "JTOUSDT",
       "deltaSymbol": "JTOUSD"
     },
     {
       "base": "JUP",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "JUPUSDT",
       "binanceSymbol": "JUPUSDT",
       "deltaSymbol": "JUPUSD"
     },
     {
       "base": "KAITO",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "KAITOUSDT",
       "binanceSymbol": "KAITOUSDT",
       "deltaSymbol": "KAITOUSD"
     },
     {
       "base": "KITE",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "KITEUSDT",
       "binanceSymbol": "KITEUSDT",
       "deltaSymbol": "KITEUSD"
     },
     {
       "base": "KSM",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "KSMUSDT",
       "binanceSymbol": "KSMUSDT",
       "deltaSymbol": "KSMUSD"
     },
     {
       "base": "LAB",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "LABUSDT",
       "binanceSymbol": "LABUSDT",
       "deltaSymbol": "LABUSD"
     },
     {
       "base": "LAYER",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "LAYERUSDT",
       "binanceSymbol": "LAYERUSDT",
       "deltaSymbol": "LAYERUSD"
     },
     {
       "base": "LDO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "LDOUSDT",
       "binanceSymbol": "LDOUSDT",
       "deltaSymbol": "LDOUSD"
     },
     {
       "base": "LIGHT",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "LIGHTUSDT",
       "binanceSymbol": "LIGHTUSDT",
       "deltaSymbol": "LIGHTUSD"
     },
     {
       "base": "LINK",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "LINKUSDT",
       "binanceSymbol": "LINKUSDT",
       "deltaSymbol": "LINKUSD"
     },
     {
       "base": "LISTA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "LISTAUSDT",
       "binanceSymbol": "LISTAUSDT",
       "deltaSymbol": "LISTAUSD"
     },
     {
       "base": "LIT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "LITUSDT",
       "binanceSymbol": "LITUSDT",
       "deltaSymbol": "LITUSD"
     },
     {
       "base": "LTC",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "LTCUSDT",
       "binanceSymbol": "LTCUSDT",
       "deltaSymbol": "LTCUSD"
     },
     {
-      "base": "M",
-      "binanceSymbol": "MUSDT",
-      "deltaSymbol": "MUSD"
-    },
-    {
       "base": "MANA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MANAUSDT",
       "binanceSymbol": "MANAUSDT",
       "deltaSymbol": "MANAUSD"
     },
     {
       "base": "MANTA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MANTAUSDT",
       "binanceSymbol": "MANTAUSDT",
       "deltaSymbol": "MANTAUSD"
     },
     {
       "base": "MASK",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MASKUSDT",
       "binanceSymbol": "MASKUSDT",
       "deltaSymbol": "MASKUSD"
     },
     {
-      "base": "ME",
-      "binanceSymbol": "MEUSDT",
-      "deltaSymbol": "MEUSD"
-    },
-    {
       "base": "MELANIA",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "MELANIAUSDT",
       "binanceSymbol": "MELANIAUSDT",
       "deltaSymbol": "MELANIAUSD"
     },
     {
       "base": "MEME",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MEMEUSDT",
       "binanceSymbol": "MEMEUSDT",
       "deltaSymbol": "MEMEUSD"
     },
     {
+      "base": "ME",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MEUSDT",
+      "binanceSymbol": "MEUSDT",
+      "deltaSymbol": "MEUSD"
+    },
+    {
       "base": "MMT",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "MMTUSDT",
       "binanceSymbol": "MMTUSDT",
       "deltaSymbol": "MMTUSD"
     },
     {
       "base": "MON",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "MONUSDT",
       "binanceSymbol": "MONUSDT",
       "deltaSymbol": "MONUSD"
     },
     {
       "base": "MOODENG",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MOODENGUSDT",
       "binanceSymbol": "MOODENGUSDT",
       "deltaSymbol": "MOODENGUSD"
     },
     {
       "base": "MOVE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "MOVEUSDT",
       "binanceSymbol": "MOVEUSDT",
       "deltaSymbol": "MOVEUSD"
     },
     {
       "base": "MUBARAK",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "MUBARAKUSDT",
       "binanceSymbol": "MUBARAKUSDT",
       "deltaSymbol": "MUBARAKUSD"
     },
     {
+      "base": "M",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "MUSDT",
+      "binanceSymbol": "MUSDT",
+      "deltaSymbol": "MUSD"
+    },
+    {
       "base": "NEAR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "NEARUSDT",
       "binanceSymbol": "NEARUSDT",
       "deltaSymbol": "NEARUSD"
     },
     {
       "base": "NEIRO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "NEIROUSDT",
       "binanceSymbol": "NEIROUSDT",
       "deltaSymbol": "NEIROUSD"
     },
     {
       "base": "NOT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "NOTUSDT",
       "binanceSymbol": "NOTUSDT",
       "deltaSymbol": "NOTUSD"
     },
     {
       "base": "ONDO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ONDOUSDT",
       "binanceSymbol": "ONDOUSDT",
       "deltaSymbol": "ONDOUSD"
     },
     {
-      "base": "OP",
-      "binanceSymbol": "OPUSDT",
-      "deltaSymbol": "OPUSD"
-    },
-    {
       "base": "OPN",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "OPNUSDT",
       "binanceSymbol": "OPNUSDT",
       "deltaSymbol": "OPNUSD"
     },
     {
+      "base": "OP",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "OPUSDT",
+      "binanceSymbol": "OPUSDT",
+      "deltaSymbol": "OPUSD"
+    },
+    {
       "base": "ORDER",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "ORDERUSDT",
       "binanceSymbol": "ORDERUSDT",
       "deltaSymbol": "ORDERUSD"
     },
     {
       "base": "ORDI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ORDIUSDT",
       "binanceSymbol": "ORDIUSDT",
       "deltaSymbol": "ORDIUSD"
     },
     {
       "base": "PARTI",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "PARTIUSDT",
       "binanceSymbol": "PARTIUSDT",
       "deltaSymbol": "PARTIUSD"
     },
     {
       "base": "PAXG",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "PAXGUSDT",
       "binanceSymbol": "PAXGUSDT",
       "deltaSymbol": "PAXGUSD"
     },
     {
       "base": "PENDLE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "PENDLEUSDT",
       "binanceSymbol": "PENDLEUSDT",
       "deltaSymbol": "PENDLEUSD"
     },
     {
       "base": "PENGU",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "PENGUUSDT",
       "binanceSymbol": "PENGUUSDT",
       "deltaSymbol": "PENGUUSD"
     },
     {
       "base": "PEOPLE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "PEOPLEUSDT",
       "binanceSymbol": "PEOPLEUSDT",
       "deltaSymbol": "PEOPLEUSD"
     },
     {
       "base": "PIEVERSE",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "PIEVERSEUSDT",
       "binanceSymbol": "PIEVERSEUSDT",
       "deltaSymbol": "PIEVERSEUSD"
     },
     {
       "base": "PIPPIN",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "PIPPINUSDT",
       "binanceSymbol": "PIPPINUSDT",
       "deltaSymbol": "PIPPINUSD"
     },
     {
       "base": "PNUT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "PNUTUSDT",
       "binanceSymbol": "PNUTUSDT",
       "deltaSymbol": "PNUTUSD"
     },
     {
       "base": "POL",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "POLUSDT",
       "binanceSymbol": "POLUSDT",
       "deltaSymbol": "POLUSD"
     },
     {
       "base": "POPCAT",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "POPCATUSDT",
       "binanceSymbol": "POPCATUSDT",
       "deltaSymbol": "POPCATUSD"
     },
     {
       "base": "PROVE",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "PROVEUSDT",
       "binanceSymbol": "PROVEUSDT",
       "deltaSymbol": "PROVEUSD"
     },
     {
       "base": "PUMP",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "PUMPUSDT",
       "binanceSymbol": "PUMPUSDT",
       "deltaSymbol": "PUMPUSD"
     },
     {
       "base": "RARE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "RAREUSDT",
       "binanceSymbol": "RAREUSDT",
       "deltaSymbol": "RAREUSD"
     },
     {
       "base": "RAVE",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "RAVEUSDT",
       "binanceSymbol": "RAVEUSDT",
       "deltaSymbol": "RAVEUSD"
     },
     {
       "base": "RED",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "REDUSDT",
       "binanceSymbol": "REDUSDT",
       "deltaSymbol": "REDUSD"
     },
     {
       "base": "RIVER",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "RIVERUSDT",
       "binanceSymbol": "RIVERUSDT",
       "deltaSymbol": "RIVERUSD"
     },
     {
       "base": "RSR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "RSRUSDT",
       "binanceSymbol": "RSRUSDT",
       "deltaSymbol": "RSRUSD"
     },
     {
       "base": "RUNE",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "RUNEUSDT",
       "binanceSymbol": "RUNEUSDT",
       "deltaSymbol": "RUNEUSD"
     },
     {
-      "base": "S",
-      "binanceSymbol": "SUSDT",
-      "deltaSymbol": "SUSD"
-    },
-    {
       "base": "SAGA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SAGAUSDT",
       "binanceSymbol": "SAGAUSDT",
       "deltaSymbol": "SAGAUSD"
     },
     {
       "base": "SAHARA",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "SAHARAUSDT",
       "binanceSymbol": "SAHARAUSDT",
       "deltaSymbol": "SAHARAUSD"
     },
     {
       "base": "SEI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SEIUSDT",
       "binanceSymbol": "SEIUSDT",
       "deltaSymbol": "SEIUSD"
     },
     {
       "base": "SIGN",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "SIGNUSDT",
       "binanceSymbol": "SIGNUSDT",
       "deltaSymbol": "SIGNUSD"
     },
     {
       "base": "SIREN",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "SIRENUSDT",
       "binanceSymbol": "SIRENUSDT",
       "deltaSymbol": "SIRENUSD"
     },
     {
       "base": "SKL",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SKLUSDT",
       "binanceSymbol": "SKLUSDT",
       "deltaSymbol": "SKLUSD"
     },
     {
       "base": "SKYAI",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "SKYAIUSDT",
       "binanceSymbol": "SKYAIUSDT",
       "deltaSymbol": "SKYAIUSD"
     },
     {
       "base": "SOL",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SOLUSDT",
       "binanceSymbol": "SOLUSDT",
       "deltaSymbol": "SOLUSD"
     },
     {
       "base": "SOLV",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SOLVUSDT",
       "binanceSymbol": "SOLVUSDT",
       "deltaSymbol": "SOLVUSD"
     },
     {
       "base": "SONIC",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "SONICUSDT",
       "binanceSymbol": "SONICUSDT",
       "deltaSymbol": "SONICUSD"
     },
     {
       "base": "SOPH",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "SOPHUSDT",
       "binanceSymbol": "SOPHUSDT",
       "deltaSymbol": "SOPHUSD"
     },
     {
       "base": "SPX",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "SPXUSDT",
       "binanceSymbol": "SPXUSDT",
       "deltaSymbol": "SPXUSD"
     },
     {
       "base": "STBL",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "STBLUSDT",
       "binanceSymbol": "STBLUSDT",
       "deltaSymbol": "STBLUSD"
     },
     {
       "base": "STRK",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "STRKUSDT",
       "binanceSymbol": "STRKUSDT",
       "deltaSymbol": "STRKUSD"
     },
     {
       "base": "STX",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "STXUSDT",
       "binanceSymbol": "STXUSDT",
       "deltaSymbol": "STXUSD"
     },
     {
       "base": "SUI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SUIUSDT",
       "binanceSymbol": "SUIUSDT",
       "deltaSymbol": "SUIUSD"
     },
     {
       "base": "SUN",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SUNUSDT",
       "binanceSymbol": "SUNUSDT",
       "deltaSymbol": "SUNUSD"
     },
     {
+      "base": "S",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SUSDT",
+      "binanceSymbol": "SUSDT",
+      "deltaSymbol": "SUSD"
+    },
+    {
       "base": "SUSHI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "SUSHIUSDT",
       "binanceSymbol": "SUSHIUSDT",
       "deltaSymbol": "SUSHIUSD"
     },
     {
       "base": "SWARMS",
+      "originalExchange": "BINGX",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "SWARMSUSDT",
       "binanceSymbol": "SWARMSUSDT",
       "deltaSymbol": "SWARMSUSD"
     },
     {
       "base": "TAC",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "TACUSDT",
       "binanceSymbol": "TACUSDT",
       "deltaSymbol": "TACUSD"
     },
     {
       "base": "TAO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "TAOUSDT",
       "binanceSymbol": "TAOUSDT",
       "deltaSymbol": "TAOUSD"
     },
     {
       "base": "TIA",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "TIAUSDT",
       "binanceSymbol": "TIAUSDT",
       "deltaSymbol": "TIAUSD"
     },
     {
       "base": "TLM",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "TLMUSDT",
       "binanceSymbol": "TLMUSDT",
       "deltaSymbol": "TLMUSD"
     },
     {
       "base": "TNSR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "TNSRUSDT",
       "binanceSymbol": "TNSRUSDT",
       "deltaSymbol": "TNSRUSD"
     },
     {
       "base": "TOWNS",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "TOWNSUSDT",
       "binanceSymbol": "TOWNSUSDT",
       "deltaSymbol": "TOWNSUSD"
     },
     {
       "base": "TRB",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "TRBUSDT",
       "binanceSymbol": "TRBUSDT",
       "deltaSymbol": "TRBUSD"
     },
     {
       "base": "TRUMP",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "TRUMPUSDT",
       "binanceSymbol": "TRUMPUSDT",
       "deltaSymbol": "TRUMPUSD"
     },
     {
       "base": "TRX",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "TRXUSDT",
       "binanceSymbol": "TRXUSDT",
       "deltaSymbol": "TRXUSD"
     },
     {
       "base": "TST",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "TSTUSDT",
       "binanceSymbol": "TSTUSDT",
       "deltaSymbol": "TSTUSD"
     },
     {
       "base": "UNI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "UNIUSDT",
       "binanceSymbol": "UNIUSDT",
       "deltaSymbol": "UNIUSD"
     },
     {
       "base": "USUAL",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "USUALUSDT",
       "binanceSymbol": "USUALUSDT",
       "deltaSymbol": "USUALUSD"
     },
     {
       "base": "VANA",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "VANAUSDT",
       "binanceSymbol": "VANAUSDT",
       "deltaSymbol": "VANAUSD"
     },
     {
       "base": "VELVET",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "VELVETUSDT",
       "binanceSymbol": "VELVETUSDT",
       "deltaSymbol": "VELVETUSD"
     },
     {
       "base": "VIRTUAL",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "VIRTUALUSDT",
       "binanceSymbol": "VIRTUALUSDT",
       "deltaSymbol": "VIRTUALUSD"
     },
     {
       "base": "VVV",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "VVVUSDT",
       "binanceSymbol": "VVVUSDT",
       "deltaSymbol": "VVVUSD"
     },
     {
       "base": "WCT",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "WCTUSDT",
       "binanceSymbol": "WCTUSDT",
       "deltaSymbol": "WCTUSD"
     },
     {
       "base": "WIF",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "WIFUSDT",
       "binanceSymbol": "WIFUSDT",
       "deltaSymbol": "WIFUSD"
     },
     {
       "base": "WLD",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "WLDUSDT",
       "binanceSymbol": "WLDUSDT",
       "deltaSymbol": "WLDUSD"
     },
     {
       "base": "WLFI",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "WLFIUSDT",
       "binanceSymbol": "WLFIUSDT",
       "deltaSymbol": "WLFIUSD"
     },
     {
       "base": "XAI",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "XAIUSDT",
       "binanceSymbol": "XAIUSDT",
       "deltaSymbol": "XAIUSD"
     },
     {
       "base": "XAN",
+      "originalExchange": "MEXC",
+      "sourceExchange": "binance",
+      "sourceFallback": true,
+      "sourceSymbol": "XANUSDT",
       "binanceSymbol": "XANUSDT",
       "deltaSymbol": "XANUSD"
     },
     {
       "base": "XAUT",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "XAUTUSDT",
       "binanceSymbol": "XAUTUSDT",
       "deltaSymbol": "XAUTUSD"
     },
     {
       "base": "XLM",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "XLMUSDT",
       "binanceSymbol": "XLMUSDT",
       "deltaSymbol": "XLMUSD"
     },
     {
       "base": "XMR",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "XMRUSDT",
       "binanceSymbol": "XMRUSDT",
       "deltaSymbol": "XMRUSD"
     },
     {
       "base": "XPL",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "XPLUSDT",
       "binanceSymbol": "XPLUSDT",
       "deltaSymbol": "XPLUSD"
     },
     {
       "base": "XRP",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "XRPUSDT",
       "binanceSymbol": "XRPUSDT",
       "deltaSymbol": "XRPUSD"
     },
     {
       "base": "ZEC",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ZECUSDT",
       "binanceSymbol": "ZECUSDT",
       "deltaSymbol": "ZECUSD"
     },
     {
       "base": "ZEN",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ZENUSDT",
       "binanceSymbol": "ZENUSDT",
       "deltaSymbol": "ZENUSD"
     },
     {
       "base": "ZK",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ZKUSDT",
       "binanceSymbol": "ZKUSDT",
       "deltaSymbol": "ZKUSD"
     },
     {
       "base": "ZORA",
+      "originalExchange": "BYBIT",
+      "sourceExchange": "bybit",
+      "sourceFallback": false,
+      "sourceSymbol": "ZORAUSDT",
       "binanceSymbol": "ZORAUSDT",
       "deltaSymbol": "ZORAUSD"
     },
     {
       "base": "ZRO",
+      "originalExchange": "BINANCE",
+      "sourceExchange": "binance",
+      "sourceFallback": false,
+      "sourceSymbol": "ZROUSDT",
       "binanceSymbol": "ZROUSDT",
       "deltaSymbol": "ZROUSD"
     }

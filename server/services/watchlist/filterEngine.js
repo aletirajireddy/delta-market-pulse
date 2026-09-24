@@ -5,23 +5,31 @@ const { filter } = require('../../config/thresholds');
 // closest snapshot we have from ~24h ago. Returns null (not a guessed 0)
 // when we don't have enough history yet — same "don't fabricate when the
 // evidence isn't there" discipline as the old project's resolveVolumePulse.
-function getVolumeChangePct(base, currentVolumeUsd, now) {
+// source: the coin's pinned source exchange ('binance'/'bybit'/'delta') —
+// REQUIRED, not optional. A coin's ticker_snapshot table has one row per
+// source per poll cycle, all sharing the same timestamp; without filtering
+// by source, "closest row ~24h ago" could arbitrarily pick a different
+// exchange's volume than the one currentVolumeUsd came from (SQLite's tie-
+// break on identical timestamps is unspecified), silently comparing across
+// venues — the exact class of bug the source-exchange pinning is meant to
+// prevent everywhere else.
+function getVolumeChangePct(base, source, currentVolumeUsd, now) {
   const targetTs = now - 24 * 60 * 60 * 1000;
   const row = db.prepare(`
     SELECT volume_usd_24h, ts FROM coin_ticker_snapshot
-    WHERE base = ? AND ts <= ?
+    WHERE base = ? AND source = ? AND ts <= ?
     ORDER BY ts DESC LIMIT 1
-  `).get(base, targetTs);
+  `).get(base, source, targetTs);
   if (!row || row.volume_usd_24h == null || row.volume_usd_24h === 0) return null;
   return ((currentVolumeUsd - row.volume_usd_24h) / row.volume_usd_24h) * 100;
 }
 
 // ticker: { changePct24h, volumeUsd24h }
-function evaluateFilter(base, ticker, now) {
+function evaluateFilter(base, source, ticker, now) {
   if (ticker.changePct24h == null || ticker.volumeUsd24h == null) {
     return { passes: false, reasons: ['missing data'] };
   }
-  const volChangePct = getVolumeChangePct(base, ticker.volumeUsd24h, now);
+  const volChangePct = getVolumeChangePct(base, source, ticker.volumeUsd24h, now);
 
   const passChange = Math.abs(ticker.changePct24h) >= filter.minAbsChangePct;
   const passVolume = ticker.volumeUsd24h >= filter.minVolumeUsd;

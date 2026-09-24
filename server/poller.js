@@ -1,6 +1,6 @@
 const db = require('./db/database');
 const universe = require('./data/coinUniverse.json');
-const binance = require('./services/exchanges/binanceClient');
+const marketData = require('./services/marketData');
 const delta = require('./services/exchanges/deltaClient');
 const { evaluateFilter } = require('./services/watchlist/filterEngine');
 const graduationGate = require('./services/watchlist/graduationGate');
@@ -27,7 +27,7 @@ const getWatchedCoins = db.prepare(`
 `);
 const getPrevPrice = db.prepare(`
   SELECT price FROM coin_ticker_snapshot
-  WHERE base = ? AND source = 'binance' AND ts < ?
+  WHERE base = ? AND source = ? AND ts < ?
   ORDER BY ts DESC LIMIT 1
 `);
 
@@ -35,39 +35,44 @@ const MEANINGFUL_MOVE_PCT = 0.05; // noise floor for "did this coin actually mov
 
 async function pollOnce() {
   const now = Date.now();
-  const [binanceTickers, deltaTickers] = await Promise.all([
-    binance.get24hrTickers().catch((e) => { console.error('Binance tickers failed:', e.message); return []; }),
+  const [tickers, deltaTickers] = await Promise.all([
+    marketData.fetchAllTickers(),
     delta.getTickers().catch((e) => { console.error('Delta tickers failed:', e.message); return []; }),
   ]);
-
-  const binanceBySymbol = new Map(binanceTickers.map((t) => [t.symbol, t]));
   const deltaBySymbol = new Map(deltaTickers.map((t) => [t.symbol, t]));
 
   let evaluated = 0;
   let oiSpikeCount = 0;
   for (const coin of universe.coins) {
-    const bt = binanceBySymbol.get(coin.binanceSymbol);
+    // Ticker pulled from the coin's PINNED source exchange (its original
+    // watchlist exchange — never mixed with a different source mid-pipeline,
+    // this is the direct fix for the XPL discrepancy).
+    const st = marketData.getTickerForCoin(coin, tickers);
     const dt = coin.deltaSymbol ? deltaBySymbol.get(coin.deltaSymbol) : null;
 
-    const price = bt ? Number(bt.lastPrice) : dt ? Number(dt.close) : null;
-    const changePct24h = bt ? Number(bt.priceChangePercent) : dt ? Number(dt.ltp_change_24h) : null;
-    const volumeUsd24h = bt ? Number(bt.quoteVolume) : dt ? Number(dt.turnover_usd) : null;
+    const price = st ? st.price : dt ? Number(dt.close) : null;
+    const changePct24h = st ? st.changePct24h : dt ? Number(dt.ltp_change_24h) : null;
+    const volumeUsd24h = st ? st.volumeUsd24h : dt ? Number(dt.turnover_usd) : null;
+    // Delta stays separate and uniform for OI/funding regardless of the
+    // coin's pinned source exchange — that's Delta's own derivatives data,
+    // not tied to where the coin's spot/perp liquidity actually lives.
     const oiUsd = dt ? Number(dt.oi_value_usd) : null;
     const fundingRate = dt ? Number(dt.funding_rate) : null;
 
-    if (bt) {
-      insertSnapshot.run({ base: coin.base, ts: now, price, change_pct_24h: changePct24h, volume_usd_24h: volumeUsd24h, oi_usd: null, funding_rate: null, source: 'binance' });
+    if (st) {
+      insertSnapshot.run({ base: coin.base, ts: now, price: st.price, change_pct_24h: st.changePct24h, volume_usd_24h: st.volumeUsd24h, oi_usd: null, funding_rate: null, source: coin.sourceExchange });
     }
     if (dt) {
       insertSnapshot.run({ base: coin.base, ts: now, price: Number(dt.close), change_pct_24h: Number(dt.ltp_change_24h), volume_usd_24h: Number(dt.turnover_usd), oi_usd: oiUsd, funding_rate: fundingRate, source: 'delta' });
     }
-    if (!bt && !dt) continue;
+    if (!st && !dt) continue;
     evaluated += 1;
 
-    const result = evaluateFilter(coin.base, { changePct24h, volumeUsd24h }, now);
+    const evalSource = st ? coin.sourceExchange : 'delta';
+    const result = evaluateFilter(coin.base, evalSource, { changePct24h, volumeUsd24h }, now);
     graduationGate.advance(coin.base, result.passes, now);
 
-    const prev = getPrevPrice.get(coin.base, now);
+    const prev = getPrevPrice.get(coin.base, coin.sourceExchange, now);
     const movedMeaningfully = prev && price
       ? Math.abs((price - prev.price) / prev.price) * 100 >= MEANINGFUL_MOVE_PCT
       : false;
@@ -106,7 +111,7 @@ async function runIndicatorPass(now) {
     const coin = universeByBase.get(base);
     if (!coin) continue;
     try {
-      const snap = await computeFullSnapshot(base, coin.binanceSymbol, now);
+      const snap = await computeFullSnapshot(coin, now);
       insertIndicatorSnapshot.run({
         base,
         ts: now,

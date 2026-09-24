@@ -19,17 +19,17 @@ const BUILD_VOLCHANGE_PCT = 20;
 
 const getLatest = db.prepare(`
   SELECT * FROM coin_ticker_snapshot
-  WHERE base = ? AND source = 'binance'
+  WHERE base = ? AND source = ?
   ORDER BY ts DESC LIMIT 1
 `);
 
 function scan(now = Date.now()) {
   const results = [];
   for (const coin of universe.coins) {
-    const row = getLatest.get(coin.base);
+    const row = getLatest.get(coin.base, coin.sourceExchange);
     if (!row || row.change_pct_24h == null || row.volume_usd_24h == null) continue;
 
-    const volChangePct = getVolumeChangePct(coin.base, row.volume_usd_24h, now);
+    const volChangePct = getVolumeChangePct(coin.base, coin.sourceExchange, row.volume_usd_24h, now);
     const changePct = row.change_pct_24h;
 
     let signal = 'QUIET';

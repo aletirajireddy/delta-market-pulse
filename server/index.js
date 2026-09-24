@@ -11,6 +11,8 @@ const { buildCandle } = require('./services/indicators/emaCandleWall');
 const breadthScanner = require('./services/breadthScanner');
 const { buildLevelCatalog } = require('./services/levelCatalog');
 const ghostSettings = require('./services/watchlist/ghostSettings');
+const universe = require('./data/coinUniverse.json');
+const universeByBase = new Map(universe.coins.map((c) => [c.base, c]));
 
 const app = express();
 app.use(express.json());
@@ -97,11 +99,10 @@ app.get('/api/distance-tracker', (req, res) => {
   const bases = db.prepare(`SELECT DISTINCT base FROM coin_indicator_snapshot`).all().map((r) => r.base);
   const coins = [];
   for (const base of bases) {
-    const row = db.prepare(`SELECT ts, ema200 FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
-    const priceRow = db.prepare(`SELECT price FROM coin_ticker_snapshot WHERE base = ? AND source = 'binance' ORDER BY ts DESC LIMIT 1`).get(base);
-    if (!row || !priceRow) continue;
+    const row = db.prepare(`SELECT ts, price, ema200 FROM coin_indicator_snapshot WHERE base = ? ORDER BY ts DESC LIMIT 1`).get(base);
+    if (!row || row.price == null) continue;
     const ema200 = JSON.parse(row.ema200);
-    const price = priceRow.price;
+    const price = row.price;
     const dist = {};
     for (const tf of Object.keys(ema200)) {
       dist[tf] = ema200[tf] != null ? ((price - ema200[tf]) / ema200[tf]) * 100 : null;
@@ -149,7 +150,8 @@ app.get('/api/speed-breakers', (req, res) => {
     const megaSpots = JSON.parse(row.megaSpots);
     const { levels, nextUp, nextDown } = buildLevelCatalog(price, ema200, smartLevels, megaSpots);
 
-    const tickerRow = db.prepare(`SELECT * FROM coin_ticker_snapshot WHERE base = ? AND source = 'binance' ORDER BY ts DESC LIMIT 1`).get(base);
+    const sourceExchange = universeByBase.get(base)?.sourceExchange ?? 'binance';
+    const tickerRow = db.prepare(`SELECT * FROM coin_ticker_snapshot WHERE base = ? AND source = ? ORDER BY ts DESC LIMIT 1`).get(base, sourceExchange);
 
     coins.push({
       base,
