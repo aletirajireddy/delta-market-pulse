@@ -56,6 +56,8 @@ app.get('/api/coin/:base', (req, res) => {
       adx: indicators.adx ? JSON.parse(indicators.adx) : null,
       cascade: indicators.cascade,
       counterCascade: indicators.counterCascade,
+      consolidation: indicators.consolidation ? JSON.parse(indicators.consolidation) : null,
+      activeBreakout: indicators.activeBreakout ? JSON.parse(indicators.activeBreakout) : null,
       megaSpots: JSON.parse(indicators.megaSpots),
       smartLevels: JSON.parse(indicators.smartLevels),
       sessionChangePct: indicators.sessionChangePct,

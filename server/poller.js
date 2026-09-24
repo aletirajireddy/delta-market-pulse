@@ -19,8 +19,8 @@ const insertSnapshot = db.prepare(`
 const insertPulse = db.prepare('INSERT OR REPLACE INTO watchlist_pulse (ts, qualifying_count, active_count) VALUES (?, ?, ?)');
 const insertIndicatorSnapshot = db.prepare(`
   INSERT OR REPLACE INTO coin_indicator_snapshot
-    (base, ts, price, ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots, smartLevels, sessionChangePct, sessionVolumeUsd)
-  VALUES (@base, @ts, @price, @ema200, @rsi14, @atrPct, @atr14, @rvol, @adx, @cascade, @counterCascade, @megaSpots, @smartLevels, @sessionChangePct, @sessionVolumeUsd)
+    (base, ts, price, ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots, smartLevels, sessionChangePct, sessionVolumeUsd, consolidation, activeBreakout)
+  VALUES (@base, @ts, @price, @ema200, @rsi14, @atrPct, @atr14, @rvol, @adx, @cascade, @counterCascade, @megaSpots, @smartLevels, @sessionChangePct, @sessionVolumeUsd, @consolidation, @activeBreakout)
 `);
 const getWatchedCoins = db.prepare(`
   SELECT base FROM coin_lifecycle WHERE status IN ('qualifying', 'active', 'ghosted')
@@ -106,7 +106,7 @@ async function runIndicatorPass(now) {
     const coin = universeByBase.get(base);
     if (!coin) continue;
     try {
-      const snap = await computeFullSnapshot(coin.binanceSymbol);
+      const snap = await computeFullSnapshot(base, coin.binanceSymbol, now);
       insertIndicatorSnapshot.run({
         base,
         ts: now,
@@ -123,6 +123,8 @@ async function runIndicatorPass(now) {
         smartLevels: JSON.stringify(snap.smartLevels),
         sessionChangePct: snap.sessionChangePct,
         sessionVolumeUsd: snap.sessionVolumeUsd,
+        consolidation: JSON.stringify(snap.consolidation),
+        activeBreakout: JSON.stringify(snap.activeBreakout),
       });
 
       for (const [tf, atrPct] of Object.entries(snap.atrPct)) {

@@ -4,6 +4,7 @@ const { findMegaSpots } = require('./indicators/megaSpot');
 const { checkCascade } = require('./indicators/cascade');
 const { computeSmartLevels, fibLevels } = require('./indicators/smartLevels');
 const { getSessionMetrics } = require('./sessionMetrics');
+const breakoutPersistence = require('./breakoutPersistence');
 
 const TF_MAP = { m1: '1m', m5: '5m', m15: '15m', m30: '30m', h1: '1h', h4: '4h' };
 
@@ -16,7 +17,7 @@ function toCandle(k) {
 // UTC-session change%/volume. Only called for watched coins (qualifying,
 // active, ghosted, majors, whitelist) — not the full 185-coin universe,
 // to stay well under exchange rate limits.
-async function computeFullSnapshot(binanceSymbol) {
+async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
   const tfResults = {};
   for (const [key, interval] of Object.entries(TF_MAP)) {
     const kl = await binance.getKlines(binanceSymbol, interval, 300);
@@ -37,6 +38,16 @@ async function computeFullSnapshot(binanceSymbol) {
   const atr14 = pick('atr14');
   const rvol = pick('rvol');
   const adx = pick('adx');
+
+  const consolidation = {};
+  const activeBreakout = {};
+  for (const tf of Object.keys(TF_MAP)) {
+    const ind = tfResults[tf].indicators;
+    consolidation[tf] = ind?.consolidation ?? null;
+    activeBreakout[tf] = breakoutPersistence.recordAndGetActive(
+      base, tf, !!ind?.breakoutUp, !!ind?.breakoutDown, now,
+    );
+  }
 
   const cascade = checkCascade(ema200, ['h4', 'h1', 'm15']);
   const counterCascade = checkCascade(ema200, ['m5', 'm1']);
@@ -64,6 +75,7 @@ async function computeFullSnapshot(binanceSymbol) {
 
   return {
     ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots,
+    consolidation, activeBreakout,
     price: tfResults.m1.indicators?.close ?? tfResults.m5.indicators?.close ?? null,
     smartLevels: { daily: dailyLevels, hourly: hourlyLevels, fib },
     sessionChangePct: session.changePct,

@@ -110,6 +110,14 @@ CREATE TABLE IF NOT EXISTS atr_baseline (
   samples TEXT NOT NULL,
   PRIMARY KEY (base, tf)
 );
+
+CREATE TABLE IF NOT EXISTS breakout_events (
+  base TEXT NOT NULL,
+  tf TEXT NOT NULL,
+  direction TEXT NOT NULL, -- up | down
+  ts INTEGER NOT NULL,
+  PRIMARY KEY (base, tf)
+);
 `);
 
 // Safe additive migration — CREATE TABLE IF NOT EXISTS doesn't alter an
@@ -125,5 +133,7 @@ safeAddColumn('coin_indicator_snapshot', 'price REAL', 'price');
 safeAddColumn('coin_indicator_snapshot', 'atr14 TEXT', 'atr14');
 safeAddColumn('coin_indicator_snapshot', 'counterCascade TEXT', 'counterCascade');
 safeAddColumn('coin_indicator_snapshot', 'adx TEXT', 'adx');
+safeAddColumn('coin_indicator_snapshot', 'consolidation TEXT', 'consolidation');
+safeAddColumn('coin_indicator_snapshot', 'activeBreakout TEXT', 'activeBreakout');
 
 module.exports = db;
