@@ -56,23 +56,28 @@ async function computeFullSnapshot(base, binanceSymbol, now = Date.now()) {
   // Base/neck reuse the h1 candles already fetched (drop the still-forming
   // last one). Daily/weekly need their own small fetches.
   const hourlyLevels = computeSmartLevels(tfResults.h1.candles.slice(0, -1));
-  const [kl1d, klW] = await Promise.all([
+  const [kl1d, klW, klM] = await Promise.all([
     binance.getKlines(binanceSymbol, '1d', 5),
     binance.getKlines(binanceSymbol, '1w', 5),
+    binance.getKlines(binanceSymbol, '1M', 5),
   ]);
   const d = kl1d.map(toCandle);
   const w = klW.map(toCandle);
+  const m = klM.map(toCandle);
   const dailyLevels = computeSmartLevels(d.slice(0, -1));
   const priorDaily = d[d.length - 2];
   const priorWeekly = w[w.length - 2];
+  const priorMonthly = m[m.length - 2];
   const fib = {
     h1: hourlyLevels?.fib.fib618 ?? null,
     d1: priorDaily ? fibLevels(priorDaily.high, priorDaily.low).fib618 : null,
     w1: priorWeekly ? fibLevels(priorWeekly.high, priorWeekly.low).fib618 : null,
   };
+  const toOHLC = (c) => (c ? { open: c.open, high: c.high, low: c.low, close: c.close } : null);
   const htf = {
-    daily: priorDaily ? { open: priorDaily.open, high: priorDaily.high, low: priorDaily.low, close: priorDaily.close } : null,
-    weekly: priorWeekly ? { open: priorWeekly.open, high: priorWeekly.high, low: priorWeekly.low, close: priorWeekly.close } : null,
+    daily: toOHLC(priorDaily),
+    weekly: toOHLC(priorWeekly),
+    monthly: toOHLC(priorMonthly),
   };
 
   const session = await getSessionMetrics(binanceSymbol);

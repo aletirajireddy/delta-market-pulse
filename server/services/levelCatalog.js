@@ -38,6 +38,10 @@ function buildLevelCatalog(price, ema200, smartLevels, megaSpots) {
   push('Week High', smartLevels?.htf?.weekly?.high);
   push('Week Low', smartLevels?.htf?.weekly?.low);
   push('Week Close', smartLevels?.htf?.weekly?.close);
+  push('Month Open', smartLevels?.htf?.monthly?.open);
+  push('Month High', smartLevels?.htf?.monthly?.high);
+  push('Month Low', smartLevels?.htf?.monthly?.low);
+  push('Month Close', smartLevels?.htf?.monthly?.close);
 
   for (const spot of megaSpots || []) {
     push(`Mega Spot [${spot.count}]`, spot.price);
