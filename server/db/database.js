@@ -96,6 +96,20 @@ CREATE TABLE IF NOT EXISTS smart_alert_events (
   message TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_alert_events_alert ON smart_alert_events(alert_id, id DESC);
+
+CREATE TABLE IF NOT EXISTS breadth_snapshot (
+  ts INTEGER PRIMARY KEY,
+  surging_count INTEGER NOT NULL,
+  building_count INTEGER NOT NULL,
+  oi_spike_count INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS atr_baseline (
+  base TEXT NOT NULL,
+  tf TEXT NOT NULL,
+  samples TEXT NOT NULL,
+  PRIMARY KEY (base, tf)
+);
 `);
 
 // Safe additive migration — CREATE TABLE IF NOT EXISTS doesn't alter an

@@ -8,6 +8,7 @@ const rsiGridWall = require('./services/indicators/rsiGridWall');
 const momentumScanner = require('./services/momentumScanner');
 const smartAlertsRouter = require('./routes/smartAlerts');
 const { buildCandle } = require('./services/indicators/emaCandleWall');
+const breadthScanner = require('./services/breadthScanner');
 
 const app = express();
 app.use(express.json());
@@ -132,6 +133,13 @@ app.get('/api/ema-candle-wall', (req, res) => {
 
 app.get('/api/momentum-scan', (req, res) => {
   res.json({ coins: momentumScanner.scan() });
+});
+
+app.get('/api/market-breadth', (req, res) => {
+  const hours = Number(req.query.hours) || 6;
+  const since = Date.now() - hours * 60 * 60 * 1000;
+  const history = db.prepare('SELECT * FROM breadth_snapshot WHERE ts >= ? ORDER BY ts ASC').all(since);
+  res.json({ history });
 });
 
 app.use('/api/smart-alerts', smartAlertsRouter);

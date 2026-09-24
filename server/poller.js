@@ -6,8 +6,10 @@ const { evaluateFilter } = require('./services/watchlist/filterEngine');
 const graduationGate = require('./services/watchlist/graduationGate');
 const ghostPrune = require('./services/watchlist/ghostPrune');
 const { checkOiSpike } = require('./services/oiSpike');
+const { checkAtrExpansion } = require('./services/atrExpansion');
 const { computeFullSnapshot } = require('./services/indicatorEngine');
 const smartAlertsEvaluator = require('./services/smartAlerts/evaluator');
+const breadthScanner = require('./services/breadthScanner');
 
 const insertSnapshot = db.prepare(`
   INSERT OR REPLACE INTO coin_ticker_snapshot
@@ -42,6 +44,7 @@ async function pollOnce() {
   const deltaBySymbol = new Map(deltaTickers.map((t) => [t.symbol, t]));
 
   let evaluated = 0;
+  let oiSpikeCount = 0;
   for (const coin of universe.coins) {
     const bt = binanceBySymbol.get(coin.binanceSymbol);
     const dt = coin.deltaSymbol ? deltaBySymbol.get(coin.deltaSymbol) : null;
@@ -73,6 +76,7 @@ async function pollOnce() {
     if (oiUsd != null) {
       const spike = checkOiSpike(coin.base, oiUsd);
       if (spike) {
+        oiSpikeCount += 1;
         console.log(`[OI SPIKE] ${coin.base} ${spike.direction} ${spike.changePct.toFixed(1)}% vs baseline`);
       }
     }
@@ -81,6 +85,11 @@ async function pollOnce() {
   const { qualifying, active } = graduationGate.counts();
   insertPulse.run(now, qualifying, active);
   console.log(`[poll] ${new Date(now).toISOString()} evaluated=${evaluated} qualifying=${qualifying} active=${active}`);
+
+  const breadth = breadthScanner.recordAndCheck(now, oiSpikeCount);
+  if (breadth.burst) {
+    console.log(`[MARKET BURST] ${breadth.burst.totalNow} coins surging/building, ${breadth.burst.multiplier.toFixed(1)}x baseline (${breadth.burst.baselineAvg.toFixed(1)})`);
+  }
 
   await runIndicatorPass(now);
 }
@@ -114,6 +123,13 @@ async function runIndicatorPass(now) {
         sessionChangePct: snap.sessionChangePct,
         sessionVolumeUsd: snap.sessionVolumeUsd,
       });
+
+      for (const [tf, atrPct] of Object.entries(snap.atrPct)) {
+        const expansion = checkAtrExpansion(base, tf, atrPct);
+        if (expansion) {
+          console.log(`[ATR EXPANSION] ${base} ${tf} ${expansion.multiplier.toFixed(1)}x baseline (${expansion.baseline.toFixed(2)}% -> ${expansion.current.toFixed(2)}%)`);
+        }
+      }
     } catch (e) {
       console.error(`[indicator pass] ${base} failed:`, e.message);
     }
