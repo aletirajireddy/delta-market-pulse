@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 16px;
+  gap: 16px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hamburgerBtn {
+  display: none;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 6px;
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  .hamburgerBtn {
+    display: flex;
+  }
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.iconBtn:hover {
+  background: var(--bg-active);
+  color: var(--text-main);
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-main);
+  white-space: nowrap;
+}

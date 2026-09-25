@@ -1,0 +1,88 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cardLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  cursor: help;
+}
+
+.wrap {
+  display: flex;
+  gap: 16px;
+}
+
+.pair {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: help;
+}
+
+.pairIcon {
+  color: var(--text-muted);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+  position: relative;
+}
+.item:hover {
+  background: var(--bg-active);
+}
+
+.popup {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 160px;
+  max-height: 220px;
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--bg-panel) 80%, transparent);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  z-index: 2400;
+  font-size: 12px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.popupTitle {
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.coin {
+  padding: 3px 0;
+  color: var(--text-main);
+}
+
+.empty {
+  color: var(--text-muted);
+  padding: 4px 0;
+}

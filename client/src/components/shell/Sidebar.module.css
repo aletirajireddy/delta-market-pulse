@@ -1,0 +1,90 @@
+.sidebar {
+  width: var(--sidebar-width-expanded);
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: none;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-width-collapsed);
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.toggleBtn:hover {
+  background: var(--bg-active);
+  color: var(--text-main);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 2px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  text-align: left;
+  white-space: nowrap;
+}
+.navItem:hover {
+  background: var(--bg-active);
+  color: var(--text-main);
+}
+
+.collapsed .navLabel {
+  display: none;
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  .sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    z-index: 2100;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+  .sidebar.mobileOpen {
+    transform: translateX(0);
+  }
+  .toggleBtn {
+    display: none;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  top: var(--header-height);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2050;
+}
+
+@media (min-width: 1025px) and (pointer: fine) {
+  .backdrop {
+    display: none;
+  }
+}

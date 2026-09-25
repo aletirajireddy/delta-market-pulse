@@ -1,0 +1,26 @@
+.wrapper {
+  position: fixed;
+  right: 16px;
+  bottom: 84px;
+  z-index: 1900;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.btn:hover {
+  background: var(--bg-active);
+}

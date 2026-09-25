@@ -1,0 +1,44 @@
+.deck {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: var(--bg-active);
+  border: 1px solid var(--border);
+  flex: 1;
+  min-width: 0;
+  max-width: 900px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cardLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  cursor: help;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+/* On mobile the header only has room for brand + hamburger; the gauge/
+   breadth quick-status moves into MobileFloatingBar's expand panel
+   instead, per docs/FRONTEND_LAYOUT_AND_STACK.md's "repurpose the same
+   mechanism for whatever the equivalent quick-status info is here." */
+@media (max-width: 1024px), (pointer: coarse) {
+  .deck {
+    display: none;
+  }
+}

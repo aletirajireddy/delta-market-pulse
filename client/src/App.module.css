@@ -1,0 +1,51 @@
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--bg-app);
+}
+
+.topBar {
+  height: var(--header-height);
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.viewLayout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  .viewLayout {
+    flex-direction: column;
+    overflow: hidden;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--widget-gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--widget-gap);
+  background: var(--bg-app);
+  scroll-behavior: smooth;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.widgetSection {
+  scroll-margin-top: 8px;
+}

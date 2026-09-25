@@ -18,6 +18,17 @@ frontend's dev tooling needs zero port config once it exists. Backend `.env`
 `PORT` and this table must always agree; if `PORT` ever changes in `.env`,
 update this file in the same commit.
 
+**Client build note (2026-09-25):** `client/src/utils/api.js` only ever
+calls relative paths (`/api/...`, `/health`) — never a hardcoded host. The
+only place `localhost:4000` appears is `client/vite.config.js`'s dev-server
+proxy, which is dev-only tooling and never runs in a production build. This
+was a deliberate choice for cloud-portability: moving either project to a
+VM/container/cloud host needs zero client code changes, as long as the
+built client is served from the same origin as its API (or behind a
+reverse proxy) — just update deployment config, not source. If `PORT` in
+`.env` ever changes, update the proxy target in `vite.config.js` in the
+same commit as this file.
+
 ## tv-recommendation-fullstack (the other project — read-only reference, do not edit its files)
 
 | Port | Process | PM2 name | Notes |

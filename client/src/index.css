@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-height: 94px;
+  --sidebar-width-expanded: 220px;
+  --sidebar-width-collapsed: 56px;
+  --widget-gap: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg-app);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Thin, minimal scrollbars — ported from the old app's index.css/
+   App.module.css (transparent track, rounded thumb, lighten on hover),
+   using this project's own theme tokens instead of its undefined
+   --gray-* variables. */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Global per the old app's own CLAUDE.md gotcha: @keyframes referenced
+   from an inline style={{animation:...}} string must live here, not in a
+   .module.css file — CSS Modules hashes the name and silently breaks it. */
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--pulse-color, rgba(246, 173, 85, 0.2));
+  }
+  50% {
+    box-shadow: 0 0 8px 1px var(--pulse-color, rgba(246, 173, 85, 0.4));
+  }
+}
+
+@keyframes dotGlowPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
