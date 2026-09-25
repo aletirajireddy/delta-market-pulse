@@ -36,7 +36,7 @@ export function MobileFloatingBar() {
             )}
           </div>
           <div className={styles.row}>
-            <span title="Slow structural trend, your selected TF series">Structural</span>
+            <span title="EMA Position Code — price vs. m5/m15/h1/h4 EMA200 stack">Structural</span>
             <span>
               <span style={{ color: 'var(--accent-green)', fontWeight: 700 }}>{structuralGroups.bull.length}</span>
               {' / '}

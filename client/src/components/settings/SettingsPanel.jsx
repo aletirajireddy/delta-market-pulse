@@ -3,7 +3,7 @@ import { useThemeStore } from '../../store/useThemeStore';
 import { useDisplaySettingsStore, TIMEZONES, DATE_FORMATS, TIME_FORMATS } from '../../store/useDisplaySettingsStore';
 import { useNotificationSettingsStore } from '../../store/useNotificationSettingsStore';
 import { useSentimentSettingsStore, POLL_INTERVALS } from '../../store/useSentimentSettingsStore';
-import { STRUCTURAL_SERIES_PRESETS, REACTIVE_SERIES_PRESETS } from '../../utils/cascade';
+import { REACTIVE_SERIES_PRESETS } from '../../utils/cascade';
 import styles from './SettingsPanel.module.css';
 
 function Switch({ on, onToggle, label }) {
@@ -27,14 +27,7 @@ export function SettingsPanel({ onClose }) {
   const { timezone, dateFormat, timeFormat, setTimezone, setDateFormat, setTimeFormat } = useDisplaySettingsStore();
   const { inAppAlertsEnabled, telegramEnabled, setInAppAlertsEnabled, setTelegramEnabled } =
     useNotificationSettingsStore();
-  const {
-    structuralSeriesKey,
-    reactiveSeriesKey,
-    pollIntervalMs,
-    setStructuralSeriesKey,
-    setReactiveSeriesKey,
-    setPollIntervalMs,
-  } = useSentimentSettingsStore();
+  const { reactiveSeriesKey, pollIntervalMs, setReactiveSeriesKey, setPollIntervalMs } = useSentimentSettingsStore();
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -120,20 +113,15 @@ export function SettingsPanel({ onClose }) {
             </select>
           </div>
           <div className={styles.row}>
-            <span className={styles.label} title="Drives Gauge/Breadth's slow trend reading">
-              Structural TF series
-            </span>
-            <select
-              className={styles.select}
-              value={structuralSeriesKey}
-              onChange={(e) => setStructuralSeriesKey(e.target.value)}
+            <span
+              className={styles.label}
+              title="Gauge/Breadth's Structural reading is EMA Position Code (Stream A's real mood driver, traced 2026-09-26) — fixed m5/m15/h1/h4, not configurable"
             >
-              {Object.entries(STRUCTURAL_SERIES_PRESETS).map(([key, meta]) => (
-                <option key={key} value={key}>
-                  {meta.label}
-                </option>
-              ))}
-            </select>
+              Structural signal
+            </span>
+            <span className={styles.label} style={{ opacity: 0.7 }}>
+              EMA Position Code
+            </span>
           </div>
           <div className={styles.row}>
             <span className={styles.label} title="Drives Breadth's fast, reactive reading">

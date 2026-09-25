@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TrendingUp, TrendingDown, Layers, Zap } from 'lucide-react';
 import { useSentimentCascade } from '../../hooks/useSentimentCascade';
 import { useSentimentSettingsStore } from '../../store/useSentimentSettingsStore';
-import { STRUCTURAL_SERIES_PRESETS, REACTIVE_SERIES_PRESETS } from '../../utils/cascade';
+import { REACTIVE_SERIES_PRESETS } from '../../utils/cascade';
 import styles from './MarketBreadth.module.css';
 
 function BreadthPair({ Icon, title, groups, rowKey, openKey, setOpenKey }) {
@@ -60,15 +60,15 @@ function BreadthPair({ Icon, title, groups, rowKey, openKey, setOpenKey }) {
 }
 
 // Single "BREADTH" label, matching the old app's header exactly — two
-// compact pairs underneath (Layers icon = structural/slow, Zap icon =
-// reactive/fast) instead of separate text sub-headers. Both recomputed
-// live from the user's selected TF series (Settings > Data & Sentiment).
+// compact pairs underneath (Layers icon = structural, Zap icon =
+// reactive/fast) instead of separate text sub-headers. Structural is EMA
+// Position Code (Stream A's real mood driver, traced 2026-09-26 — see
+// utils/positionCode.js); Reactive uses the user's selected TF series
+// (Settings > Data & Sentiment).
 export function MarketBreadth() {
   const { structuralGroups, reactiveGroups, total } = useSentimentCascade();
   const [openKey, setOpenKey] = useState(null);
-  const structuralSeriesKey = useSentimentSettingsStore((s) => s.structuralSeriesKey);
   const reactiveSeriesKey = useSentimentSettingsStore((s) => s.reactiveSeriesKey);
-  const structuralLabel = STRUCTURAL_SERIES_PRESETS[structuralSeriesKey]?.label;
   const reactiveLabel = REACTIVE_SERIES_PRESETS[reactiveSeriesKey]?.label;
 
   return (
@@ -79,7 +79,7 @@ export function MarketBreadth() {
       <div className={styles.wrap}>
         <BreadthPair
           Icon={Layers}
-          title={`Structural (${structuralLabel}) — slow, long-lookback trend`}
+          title="Structural (EMA Position Code) — price vs. m5/m15/h1/h4 EMA200 stack, Stream A's real mood signal"
           groups={structuralGroups}
           rowKey="structural"
           openKey={openKey}
