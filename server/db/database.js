@@ -116,6 +116,15 @@ CREATE TABLE IF NOT EXISTS system_settings (
   value TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS coin_volchange_history (
+  base TEXT NOT NULL,
+  ts INTEGER NOT NULL,
+  vol_change_pct REAL,
+  source TEXT NOT NULL, -- 'exchange' | 'inhouse_fallback' | 'unavailable'
+  PRIMARY KEY (base, ts)
+);
+CREATE INDEX IF NOT EXISTS idx_volchange_base_ts ON coin_volchange_history(base, ts DESC);
+
 CREATE TABLE IF NOT EXISTS breakout_events (
   base TEXT NOT NULL,
   tf TEXT NOT NULL,

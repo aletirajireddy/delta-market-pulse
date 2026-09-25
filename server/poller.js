@@ -18,6 +18,10 @@ const insertSnapshot = db.prepare(`
   VALUES (@base, @ts, @price, @change_pct_24h, @volume_usd_24h, @oi_usd, @funding_rate, @source)
 `);
 const insertPulse = db.prepare('INSERT OR REPLACE INTO watchlist_pulse (ts, qualifying_count, active_count) VALUES (?, ?, ?)');
+const insertVolChange = db.prepare(`
+  INSERT OR REPLACE INTO coin_volchange_history (base, ts, vol_change_pct, source)
+  VALUES (@base, @ts, @vol_change_pct, @source)
+`);
 const insertIndicatorSnapshot = db.prepare(`
   INSERT OR REPLACE INTO coin_indicator_snapshot
     (base, ts, price, ema200, rsi14, atrPct, atr14, rvol, adx, cascade, counterCascade, megaSpots, smartLevels, sessionChangePct, sessionVolumeUsd, consolidation, activeBreakout)
@@ -62,13 +66,31 @@ async function pollOnce() {
 
   // Bulk-fetch every coin's 24h volume-change up front, concurrency-limited
   // — this is the one genuinely slow part (185 klines calls), done once
-  // here rather than serially inline in the per-coin loop below.
+  // here rather than serially inline in the per-coin loop below. Each call
+  // gets this cycle's live volume too, so it can fall back to the cheap
+  // in-house comparison if the exchange klines fetch fails.
   const volChangeResults = await mapWithConcurrency(
     universe.coins, VOLCHANGE_CONCURRENCY,
-    (coin) => getVolumeChangePct(coin),
+    (coin) => {
+      const st = marketData.getTickerForCoin(coin, tickers);
+      return getVolumeChangePct(coin, st?.volumeUsd24h ?? null);
+    },
   );
   const volChangeByBase = new Map(universe.coins.map((c, i) => [c.base, volChangeResults[i]]));
   volumeChangeCache.set(volChangeByBase, now);
+
+  let fallbackCount = 0;
+  let unavailableCount = 0;
+  for (const c of universe.coins) {
+    const vc = volChangeByBase.get(c.base);
+    if (!vc) continue;
+    insertVolChange.run({ base: c.base, ts: now, vol_change_pct: vc.value, source: vc.source });
+    if (vc.source === 'inhouse_fallback') fallbackCount += 1;
+    if (vc.source === 'unavailable') unavailableCount += 1;
+  }
+  if (fallbackCount || unavailableCount) {
+    console.log(`[volchange] exchange-primary failed for ${fallbackCount + unavailableCount} coin(s): ${fallbackCount} used in-house fallback, ${unavailableCount} had no data at all`);
+  }
 
   let evaluated = 0;
   let oiSpikeCount = 0;
