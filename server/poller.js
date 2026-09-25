@@ -2,7 +2,7 @@ const db = require('./db/database');
 const universe = require('./data/coinUniverse.json');
 const marketData = require('./services/marketData');
 const delta = require('./services/exchanges/deltaClient');
-const { evaluateFilter } = require('./services/watchlist/filterEngine');
+const { getVolumeChangePct, buildResult } = require('./services/watchlist/filterEngine');
 const graduationGate = require('./services/watchlist/graduationGate');
 const ghostPrune = require('./services/watchlist/ghostPrune');
 const { checkOiSpike } = require('./services/oiSpike');
@@ -10,6 +10,7 @@ const { checkAtrExpansion } = require('./services/atrExpansion');
 const { computeFullSnapshot } = require('./services/indicatorEngine');
 const smartAlertsEvaluator = require('./services/smartAlerts/evaluator');
 const breadthScanner = require('./services/breadthScanner');
+const volumeChangeCache = require('./services/volumeChangeCache');
 
 const insertSnapshot = db.prepare(`
   INSERT OR REPLACE INTO coin_ticker_snapshot
@@ -32,6 +33,24 @@ const getPrevPrice = db.prepare(`
 `);
 
 const MEANINGFUL_MOVE_PCT = 0.05; // noise floor for "did this coin actually move"
+const VOLCHANGE_CONCURRENCY = 15; // parallel klines fetches for the 24h volume-change check — keeps a 185-coin pass well under a minute without bursting the API
+
+// Runs `fn` over `items` with at most `limit` in flight at once. Used for
+// the per-coin volume-change fetch (185 coins, each needs its own klines
+// call) — fully sequential would take too long per poll cycle, fully
+// parallel would burst the API for no reason given we have a 60s budget.
+async function mapWithConcurrency(items, limit, fn) {
+  const results = new Array(items.length);
+  let next = 0;
+  async function worker() {
+    while (next < items.length) {
+      const i = next++;
+      results[i] = await fn(items[i], i).catch(() => null);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
 
 async function pollOnce() {
   const now = Date.now();
@@ -40,6 +59,16 @@ async function pollOnce() {
     delta.getTickers().catch((e) => { console.error('Delta tickers failed:', e.message); return []; }),
   ]);
   const deltaBySymbol = new Map(deltaTickers.map((t) => [t.symbol, t]));
+
+  // Bulk-fetch every coin's 24h volume-change up front, concurrency-limited
+  // — this is the one genuinely slow part (185 klines calls), done once
+  // here rather than serially inline in the per-coin loop below.
+  const volChangeResults = await mapWithConcurrency(
+    universe.coins, VOLCHANGE_CONCURRENCY,
+    (coin) => getVolumeChangePct(coin),
+  );
+  const volChangeByBase = new Map(universe.coins.map((c, i) => [c.base, volChangeResults[i]]));
+  volumeChangeCache.set(volChangeByBase, now);
 
   let evaluated = 0;
   let oiSpikeCount = 0;
@@ -68,8 +97,13 @@ async function pollOnce() {
     if (!st && !dt) continue;
     evaluated += 1;
 
-    const evalSource = st ? coin.sourceExchange : 'delta';
-    const result = evaluateFilter(coin.base, evalSource, { changePct24h, volumeUsd24h }, now);
+    // Filter is only ever evaluated against the coin's pinned exchange —
+    // if that exchange had no ticker this cycle, skip evaluation entirely
+    // rather than falling back to Delta (which would mix sources into the
+    // same decision, the exact bug the exchange-pinning fix removed).
+    const result = st && changePct24h != null && volumeUsd24h != null
+      ? buildResult({ changePct24h, volumeUsd24h }, volChangeByBase.get(coin.base))
+      : { passes: false, reasons: ['pinned exchange unavailable this cycle'] };
     graduationGate.advance(coin.base, result.passes, now);
 
     const prev = getPrevPrice.get(coin.base, coin.sourceExchange, now);

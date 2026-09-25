@@ -1,6 +1,6 @@
 const db = require('../db/database');
 const universe = require('../data/coinUniverse.json');
-const { getVolumeChangePct } = require('./watchlist/filterEngine');
+const volumeChangeCache = require('./volumeChangeCache');
 
 // Replaces the old project's institutional-alert-driven "macro" pulse (dead
 // since the institutional feed stopped in the old system) with a pure
@@ -29,7 +29,7 @@ function scan(now = Date.now()) {
     const row = getLatest.get(coin.base, coin.sourceExchange);
     if (!row || row.change_pct_24h == null || row.volume_usd_24h == null) continue;
 
-    const volChangePct = getVolumeChangePct(coin.base, coin.sourceExchange, row.volume_usd_24h, now);
+    const volChangePct = volumeChangeCache.get(coin.base);
     const changePct = row.change_pct_24h;
 
     let signal = 'QUIET';
